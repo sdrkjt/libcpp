@@ -1,0 +1,28 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main(int argc, char **argv)
+{
+  int pid;
+  printf("\n(processus %d) avant le fork\n", getpid());
+  printf("APPEL A FORK...\n\n");
+  // Création d'un processus enfant
+  pid = fork();
+  printf("FORK STARTED...");
+  switch (pid) {
+    // En cas d'erreur lors du fork
+  case -1 : perror("Creation enfant impossible");
+    exit(EXIT_FAILURE);
+    // Pour le processus enfant
+  case 0 : printf("(Processus enfant %d) : Valeur renvoyee par fork =%d\n",
+		  getpid(),pid);
+    break;
+    // Pour le processus père
+  default : printf("(Processus pere %d) : Valeur renvoyee par fork =%d\n"
+		   , getpid(),pid);
+  }
+  printf("END of PROGRAM \n");
+  exit(EXIT_SUCCESS);
+}

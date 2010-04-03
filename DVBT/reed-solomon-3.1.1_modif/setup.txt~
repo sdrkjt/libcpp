@@ -1,0 +1,20 @@
+INCLUDED DIRECTORIES: 
+INCLUDED SETUPS:
+
+FILELIST: exercise
+	  encode_rs
+	  encode_rs_ccsds
+	  decode_rs
+	  decode_rs_ccsds
+	  init_rs	
+    	  
+EXECUTABLE FILES: rstest
+	   	  gen_ccsds
+	  	  gen_ccsdstal
+
+C++ GLOBAL OPTIONS:	-msse2
+    	   		-O3
+                        -fno-builtin
+
+LINKNAMES: 
+

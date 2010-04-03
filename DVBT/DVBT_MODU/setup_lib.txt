@@ -1,0 +1,9 @@
+INCLUDED DIRECTORIES: ../../libsig ../../librun 
+INCLUDED SETUPS: ../../libsig/setup_lib.txt
+FILELIST: 
+	  dvbgen_prbs
+	  dvbgen_rs
+	  dvbgen_inner_coder
+	  dvbgen_reference_signal	
+	  dvbgen_ofdm
+#LINKNAMES: 

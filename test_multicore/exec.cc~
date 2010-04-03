@@ -1,0 +1,13 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc, char *argv[])
+{
+  const char *args[4];
+  args[0] = ("ls"  );
+  args[1] = ("-l"  );
+  args[2] = ("/etc");
+  args[3] = NULL;
+  execv("/bin/ls",args);
+  exit(EXIT_SUCCESS);
+}

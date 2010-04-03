@@ -1,0 +1,420 @@
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=0, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=0)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 2 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=0, sync=00)
+descramble: dropping invalid packet
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=1, sync=00)
+descramble: dropping invalid packet
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=1, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=1)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 2 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=2, sync=00)
+descramble: dropping invalid packet
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=3, sync=00)
+descramble: dropping invalid packet
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=2, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=2)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 3 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=4, sync=00)
+descramble: dropping invalid packet
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=5, sync=00)
+descramble: dropping invalid packet
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=6, sync=00)
+descramble: dropping invalid packet
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=3, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=3)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 2 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=7, sync=00)
+descramble: dropping invalid packet
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=8, sync=00)
+descramble: dropping invalid packet
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=4, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=4)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 3 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=9, sync=00)
+descramble: dropping invalid packet
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=10, sync=00)
+descramble: dropping invalid packet
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=11, sync=b8)
+descramble: resyncing c from 11 to 0
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=5, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=5)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 2 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=1, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=2, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=6, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=6)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 3 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=3, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=4, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=5, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=7, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=7)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 2 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=6, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=7, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=8, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=8)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 3 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=8, sync=b8)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=9, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=10, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=9, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=9)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 2 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=11, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=12, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=10, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=10)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 3 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=13, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=14, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=15, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=11, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=11)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 2 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=16, sync=b8)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=17, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=12, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=12)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 3 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=18, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=19, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=20, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=13, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=13)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 2 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=21, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=22, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=14, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=14)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 3 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=23, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=24, sync=b8)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=25, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=15, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=15)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 2 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=26, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=27, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=16, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=16)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 3 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=28, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=29, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=30, sync=47)
+recieving 1 symbols.
+  ofdm_decode (m=2560, n=2048, k=1705)
+  remove_reference_signals (n=1705, l=17, m=0)
+  demap (1512)
+  inner_deinterleave (6048, l=17)
+  depuncturing (6048)
+  convolutional_decode (4032)
+recieving 2 packets.
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=31, sync=47)
+  outer_deinterleave. (204)
+  rs_decode. (n=204, k=188)
+    rs_syndrome. (n=204, k=188)
+      rs_syndrome: syndrome = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
+    rs_decode: no error correction necessary
+  descramble. (n=188, c=32, sync=b8)

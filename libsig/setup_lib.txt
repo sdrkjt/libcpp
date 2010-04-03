@@ -1,0 +1,14 @@
+INCLUDED DIRECTORIES: ../libgui ../asmlib 
+INCLUDED SETUPS: ../libgui/setup_lib.txt
+FILELIST: 
+	  TSC
+	  sig_eltwise
+	  sig_scalar 
+	  sig_complexd 
+	  sig_complex 
+	  sig_gui
+	  sig_random  
+	  sig_dft
+	  memalloc
+
+

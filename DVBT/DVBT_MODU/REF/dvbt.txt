@@ -1,0 +1,386 @@
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 2 packets.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 2 packets.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 3 packets.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 2 packets.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 3 packets.
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 2 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 3 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 2 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 3 packets.
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 2 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 3 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 2 packets.
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 188
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+TB: reading block of length 0
+S: sending 1 packets.
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 3 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 2 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 3 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 2 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+S: sending 1 packets.
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 3 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+TB: comparing received packet
+TB: successfully transmitted 188 bytes
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 0 symbols.
+S: sending 1 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+S: sending 1 symbols.
+C: transmitting 2560 samples.
+R: recieving 1 symbols.
+R: recieving 2 packets.
+	scrambler_prbs. (n=1)
+	scrambler_prbs. (n=187)
+	scrambler_prbs. (n=187)
+TB: comparing received packet
+TB: successfully transmitted 188 bytes

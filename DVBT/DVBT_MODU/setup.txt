@@ -1,0 +1,26 @@
+INCLUDED DIRECTORIES: 
+INCLUDED SETUPS: setup_lib.txt 
+	  	    	  
+EXECUTABLE FILES: #t_toto
+	          t_module
+
+C++ GLOBAL OPTIONS:	-msse3
+    	   		-O3
+                        -fno-builtin
+			-flax-vector-conversions	#use for _mm_srli_si128	
+			#-DSTDCpp		
+			#-DMEMALLOC			
+			#-DW_UALIGNED
+			#-DW_MEMALLOC
+			#-DBOUNDSCHECKING
+			#-DSigName
+			#-DTIME_MRUN
+			#-DTIME_CORE		
+
+ #-Dcheck_outer_coder
+ #-Dcheck_inner_coder
+ #-Dcheck_inner_intrlv
+ #-Dcheck_ofdm
+ #-DGUI
+LINKNAMES: 	-lfftw3f ../../asmlib/alibelf32.a -L../../libgui/bin -lSDRGUI
+

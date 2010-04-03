@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svnroot/usrposcope/!svn/ver/7/trunk
+END
+scope.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svnroot/usrposcope/!svn/ver/5/trunk/scope.h
+END
+COMPILING
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/usrposcope/!svn/ver/6/trunk/COMPILING
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svnroot/usrposcope/!svn/ver/2/trunk/LICENSE
+END
+usrpiface.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/usrposcope/!svn/ver/7/trunk/usrpiface.cpp
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/usrposcope/!svn/ver/7/trunk/main.cpp
+END
+usrpiface.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/usrposcope/!svn/ver/7/trunk/usrpiface.h
+END
+scope.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/usrposcope/!svn/ver/5/trunk/scope.cpp
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/usrposcope/!svn/ver/5/trunk/Makefile
+END
+Oscilloscope.pro
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/usrposcope/!svn/ver/1/trunk/Oscilloscope.pro
+END
+gpl-2.0.txt
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/usrposcope/!svn/ver/2/trunk/gpl-2.0.txt
+END

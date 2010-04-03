@@ -1,0 +1,378 @@
+sending 1 packets.
+  scramble. (n=188, c=0, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [50; 23; 137; 76; 92; 44; 88; 203; 119; 195; 87; 252; 105; 231; 37; 143];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=1, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [90; 39; 65; 214; 31; 200; 92; 141; 231; 154; 95; 8; 224; 177; 164; 244];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=2, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [80; 132; 30; 226; 51; 247; 169; 1; 95; 193; 41; 52; 81; 186; 183; 69];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=0)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=0, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=3, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [179; 75; 107; 251; 181; 106; 2; 102; 34; 145; 218; 105; 20; 25; 53; 8];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=4, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [86; 36; 17; 185; 123; 200; 176; 203; 112; 50; 104; 208; 236; 251; 141; 63];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=1)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=1, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=5, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [242; 224; 92; 213; 146; 207; 52; 139; 40; 51; 179; 239; 79; 243; 160; 152];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=6, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [182; 129; 105; 165; 147; 164; 33; 64; 156; 74; 187; 187; 232; 70; 97; 235];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=7, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [214; 32; 78; 77; 12; 239; 231; 55; 5; 226; 198; 137; 137; 131; 209; 10];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=2)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=2, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=8, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [32; 52; 180; 59; 9; 101; 105; 150; 161; 191; 37; 201; 116; 177; 214; 24];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=9, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [49; 166; 60; 163; 143; 24; 250; 25; 216; 204; 148; 120; 9; 44; 31; 180];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=3)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=3, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=10, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [168; 20; 157; 27; 163; 174; 230; 223; 173; 86; 175; 246; 150; 136; 227; 136];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=11, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [115; 180; 88; 80; 175; 69; 230; 40; 100; 113; 113; 103; 235; 132; 223; 229];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=12, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [236; 96; 141; 214; 140; 232; 32; 8; 97; 4; 46; 20; 40; 218; 63; 81];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=4)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=4, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=13, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [10; 81; 44; 68; 116; 139; 186; 178; 173; 45; 56; 160; 235; 31; 189; 69];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=14, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [150; 78; 18; 247; 250; 57; 115; 142; 146; 59; 191; 253; 134; 191; 184; 244];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=5)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=5, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=15, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [20; 10; 184; 217; 106; 192; 199; 35; 81; 50; 106; 22; 161; 49; 169; 131];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=16, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [118; 167; 157; 78; 195; 220; 75; 140; 101; 97; 110; 170; 128; 207; 205; 232];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=17, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [199; 241; 18; 209; 7; 118; 113; 248; 214; 29; 4; 253; 166; 112; 238; 37];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=6)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=6, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=18, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [126; 55; 112; 99; 106; 182; 144; 21; 82; 77; 195; 205; 189; 73; 62; 166];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=19, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [202; 221; 105; 45; 128; 64; 52; 115; 251; 233; 61; 41; 70; 88; 40; 11];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=7)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=7, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=20, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [218; 158; 87; 130; 98; 9; 219; 160; 37; 148; 51; 172; 72; 21; 199; 195];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=21, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [18; 210; 241; 118; 153; 217; 168; 177; 78; 175; 87; 37; 93; 75; 62; 4];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=22, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [79; 109; 54; 97; 115; 19; 42; 131; 97; 80; 23; 148; 0; 213; 250; 249];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=8)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=8, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=23, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [164; 188; 193; 234; 210; 251; 130; 255; 244; 123; 63; 82; 164; 224; 74; 117];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=24, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [187; 118; 107; 105; 66; 250; 255; 171; 134; 198; 188; 43; 56; 161; 236; 230];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=9)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=9, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=25, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [59; 248; 56; 136; 151; 24; 96; 226; 232; 68; 127; 156; 42; 111; 21; 89];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=26, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [33; 173; 16; 210; 223; 240; 202; 70; 0; 93; 147; 103; 2; 24; 91; 224];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=27, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [239; 128; 37; 42; 154; 228; 236; 171; 77; 88; 177; 124; 248; 5; 92; 182];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=10)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=10, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=28, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [188; 190; 122; 180; 142; 246; 181; 173; 7; 8; 87; 28; 13; 210; 193; 158];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=29, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [56; 35; 63; 177; 243; 13; 220; 242; 61; 253; 203; 60; 193; 132; 138; 232];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=11)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=11, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=30, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [147; 187; 206; 150; 108; 66; 65; 7; 150; 252; 89; 152; 127; 253; 245; 132];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=31, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [99; 175; 133; 148; 124; 125; 73; 204; 12; 222; 207; 89; 125; 52; 80; 136];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=32, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [212; 110; 147; 197; 38; 148; 0; 44; 34; 100; 89; 45; 47; 143; 242; 59];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=12)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=12, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=33, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [238; 215; 112; 209; 109; 51; 229; 222; 37; 3; 72; 101; 23; 73; 21; 58];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=34, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [35; 158; 139; 223; 80; 108; 245; 153; 33; 61; 84; 120; 201; 54; 204; 177];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=13)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=13, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=35, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [7; 133; 168; 59; 25; 187; 126; 179; 253; 235; 226; 215; 109; 129; 137; 141];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=36, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [160; 221; 204; 219; 240; 52; 9; 126; 43; 135; 94; 227; 60; 66; 215; 249];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=37, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [85; 28; 190; 76; 226; 70; 118; 237; 199; 166; 222; 191; 5; 208; 229; 36];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=14)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=14, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=38, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [46; 141; 16; 213; 240; 22; 123; 113; 97; 168; 231; 148; 244; 78; 136; 251];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=39, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [130; 4; 181; 206; 177; 173; 16; 153; 1; 27; 1; 52; 202; 157; 200; 222];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=15)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=15, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=40, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [212; 110; 147; 197; 38; 148; 0; 44; 34; 100; 89; 45; 47; 143; 242; 59];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=41, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [238; 215; 112; 209; 109; 51; 229; 222; 37; 3; 72; 101; 23; 73; 21; 58];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=16)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=16, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)
+sending 1 packets.
+  scramble. (n=188, c=42, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [35; 158; 139; 223; 80; 108; 245; 153; 33; 61; 84; 120; 201; 54; 204; 177];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=43, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [7; 133; 168; 59; 25; 187; 126; 179; 253; 235; 226; 215; 109; 129; 137; 141];
+  outer_interleave. (204)
+sending 0 symbols.
+sending 1 packets.
+  scramble. (n=188, c=44, sync=47)
+  rs_encode. (n=204, k=188)
+    rs_encode: parity = [160; 221; 204; 219; 240; 52; 9; 126; 43; 135; 94; 227; 60; 66; 215; 249];
+  outer_interleave. (204)
+sending 1 symbols.
+  convolutional_encode (4032)
+  puncturing (4032)
+  inner_interleave (6048, L=17)
+  map (1512x4)
+  insert_reference_signals (n=1512, l=17, m=0)
+  ofdm_encode (m=2560, n=2048, k=1705)

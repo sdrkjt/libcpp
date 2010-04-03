@@ -1,0 +1,4 @@
+INCLUDED DIRECTORIES: /usr/lib/qt4/mkspecs/linux-g++ /usr/include/QtCore /usr/include/QtCore /usr/include/QtGui /usr/include/QtGui /usr/include/qwt ../libgui 
+
+
+LINKNAMES:  -lQtGui -lQtCore -lpthread -lqwt -L../libgui/bin -lSDRGUI

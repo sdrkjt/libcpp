@@ -1,0 +1,9 @@
+INCLUDED SETUPS: setup_lib.txt
+	  	    	  
+EXECUTABLE FILES: t_AlignedArray 
+
+C++ GLOBAL OPTIONS:	-msse2
+    	   		-O3
+                        -fno-builtin
+
+LINKNAMES: 	#-lfftw3f ../asmlib/alibelf32.a

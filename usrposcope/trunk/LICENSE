@@ -1,0 +1,11 @@
+This program was developed by LT Ian Larsen, USN at the Naval Postgraduate School as part of thesis research.  Therefore, all source code created by the author is not copywritable.
+
+The QT toolkit used to create the software is available to be used under the GPL license.  This project, when distributed or compiled as a whole with QT, falls under the terms of that license.  The individual portions of the source code that are not covered by QT's license are public domain. 
+
+You should have received a copy of the GNU General Public License along with this program; if not, write to: 
+
+Free Software Foundation, Inc., 
+51 Franklin Street, Fifth Floor, 
+Boston, MA 02110-1301 USA.
+
+

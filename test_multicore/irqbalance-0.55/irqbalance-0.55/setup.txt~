@@ -1,0 +1,4 @@
+FILE LIST:
+bitmap irqbalance cputree  procinterrupts irqlist placement activate network powermode numa classify
+
+EXECUTABLE : irqbalance
