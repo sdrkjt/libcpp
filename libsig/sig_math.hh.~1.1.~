@@ -1,6 +1,0 @@
-#ifndef ASM
- #include <math.h>
-#else
- #include "asmlibran.h"
- #define random MersenneRandom
-#endif
