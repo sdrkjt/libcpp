@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.1  (Unix)">
+	<META NAME="CREATED" CONTENT="20100405;22024400">
+	<META NAME="CHANGED" CONTENT="20100406;1434400">
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P><SPAN STYLE="background: #ffff00">KeithJack_VideoDemystified_FifthEdition.pdf</SPAN></P>
+<P>-RGB(gamma factor)R'G'B'</P>
+<P>-Valid RGB: when converting from YUV, a valid value of RGB is
+between [0,1] for each component</P>
+<P>-YUV vs RGB: with rgb, we need 3x of bandwidth</P>
+<P>                 with yuv, we can encode u&amp;v with smaller
+bandwith without losing a lot on performance</P>
+<P>-PAL,SECAM,NTSC modulation: method of encoding RGB signals with
+limited bandwidth</P>
+<P>                 used in TV broadcast &amp; DVD reader (see figure
+2.4 for more detail)</P>
+<P>-PAL,SECAM,NTSC format: can be seen as different ways of video
+display 
+</P>
+<P>                 DVD reader uses MPEG compression and can be
+display in PAL(Europe) or NTSC(American) format</P>
+<P>-In digital component video, the video signals are in digital form
+(YCbCr or R´G´B´),being encoded to</P>
+<P>                 composite NTSC, PAL, or SECAM only when it is
+necessary for broadcasting or recording purposes.</P>
+<P>-Analog Display (CRT) vs Digital Display (LCD)</P>
+<P>                 most CRT displays are interlaced while
+LCD,plasma,computer displays are progressive. 
+</P>
+<P><FONT SIZE=4 STYLE="font-size: 16pt"><SPAN STYLE="background: #ffff00">PAL
+System</SPAN></FONT></P>
+<P><B>A.Frame Structure (Display Format):</B></P>
+<P><U>1. freq 50Hz: interlaced (not progressive)</U></P>
+<P>-50 scans/second: alternative line odd vs even</P>
+<P>-25 frames/second</P>
+<P><U>2. framesize 625x864 </U>
+</P>
+<P>-Fs = 25*625*864 = 13.5MHz(sampling clock of PAM)</P>
+<P>-line scanning frequency(Fh) = 25*625 = 15.625KHz~64us</P>
+<P>-video size: 576x702 (The digital standard resolution is 720x576
+pixel for DVDs,</P>
+<P>                      480x576 pixel for SVCDs and 352x288 pixel
+for VCDs)</P>
+<P>-sync  size: 49x162</P>
+<P>-&gt;input Y,U,V   : 3 matrix of size 576x702 (active)</P>
+<P>-&gt;ouput My,Mu,Mv: 3 matrix of size 625x864 (active+sync)</P>
+<P><B>B.Waveform: </B>
+</P>
+<P STYLE="font-weight: normal"><U>1.VSB modulation</U></P>
+<P>  Colorfreq: (1135/4+1/625)/64us = 4.43361875MHz (B,D,G,H,I,N)PAL</P>
+<P>  BandWidth: video         5.5MHz (I)PAL</P>
+<P>             color         fsc+[-1.300,+1.066] (I)PAL 
+</P>
+<P>             vestigial     1.25MHz</P>
+<P>             total         8Mhz (I)PAL</P>
+<P>  AudioFreq:</P>
+<P><U>2.Processing:</U></P>
+<P>step1: mapping (My,Mu,Mv) to M(t)</P>
+<P>       M(t) = Ky*My(t)+Ku*Mu(t)*cos(wct)+-Kv*Mv(t)*sin(wt)</P>
+<P>       M(t) is a real signal, bwd = 6.75 MHz x 2 (sampled at
+13.5MHz)</P>
+<P>step2: Filtering+Decimating to transform M(t)jj sampled at 13.5MHz
+to baseband signal sampled at 8MHz 
+</P>
+<P>       a simple version: use fft&amp;ifft, but pay attention on
+the bord effet</P>
+<P><B>C.Documents:</B></P>
+<P>1.ITU601_EncodingParametersOfDigitalTelevisionForStudios.PDF</P>
+<P>2.KeithJack_VideoDemystified_FifthEdition.pdf</P>
+<P>3.PAL-ITU-R-REC-BT.470-6.pdf</P>
+</BODY>
+</HTML>
