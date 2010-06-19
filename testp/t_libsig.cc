@@ -50,18 +50,18 @@ float ClockTest (__int64 clocks[]) {
   for(int kk=0;kk<Size;kk++)
     {
       A[kk] = 0.123f + kk; 
-      Sa.val(kk) = 0.123f + kk;
+      Sa[kk] = 0.123f + kk;
 
       B[kk] = 0.789f + kk;
-      Sb.val(kk) = 0.789f + kk;
+      Sb[kk] = 0.789f + kk;
 
-      Sas.val(kk) = (    kk)%4096;
-      Sbs.val(kk) = (9 + kk)%4096;
+      Sas[kk] = (    kk)%4096;
+      Sbs[kk] = (9 + kk)%4096;
 
-      Sa_char.val(kk) = (    kk)%120;
-      Sb_char.val(kk) = (9 + kk)%120;
+      Sa_char[kk] = (    kk)%120;
+      Sb_char[kk] = (9 + kk)%120;
 
-      //Sc.val(kk) = 0;
+      //Sc[kk] = 0;
     }
 
   // loop to measure clock cycles of test code
@@ -128,7 +128,7 @@ float ClockTest (__int64 clocks[]) {
 
     /*Code Not optimal here*/			
     Sigfl VScalar; VScalar.SetSize(4);		
-    for(int ii=0;ii<4;ii++)VScalar.val(ii) = 2.0f;	
+    for(int ii=0;ii<4;ii++)VScalar[ii] = 2.0f;	
     /*---------------------*/				
     TIME("Code Not optimal");
     
@@ -234,8 +234,8 @@ void test_complexd(){
   //cxa.SigStep(0,1,Size);
   for(int kk=0;kk<Size;kk++)
     {
-      cxa.val(kk) = _mm_set_pd(kk*0.1,kk*0.7);
-      cxb.val(kk) = _mm_set_pd(kk*0.11,kk*0.27);
+      cxa[kk] = _mm_set_pd(kk*0.1,kk*0.7);
+      cxb[kk] = _mm_set_pd(kk*0.11,kk*0.27);
     }
  /**FIN INIT**********************************************************/
   for(int iter=0;iter<3;iter++){
@@ -330,8 +330,8 @@ int test_complexs(int argc, char **argv){
   //cxa.SigStep(0,1,Size);
   for(int kk=0;kk<Size;kk++)
     {
-      cxa.val(kk) = Cxs(kk*0.7,kk*0.1);
-      cxb.val(kk) = Cxs(kk*0.27,kk*0.11);
+      cxa[kk] = Cxs(kk*0.7,kk*0.1);
+      cxb[kk] = Cxs(kk*0.27,kk*0.11);
     }
   figure(1);plot2d(cxa,"cxa");
   figure(2);plot2d(cxb,"cxb");
@@ -374,7 +374,7 @@ int test_complexs(int argc, char **argv){
   cxb = normcx(cxc);
   TIME("NORMCX: cxb = normcx(cxc)");
   DUMP(cxb);
-  cxb.val(0)=1;
+  cxb[0]=1;
   //figure(4);plot2d(cxb,"cxb");
   TIME();
   cxc = cxb*Cxs(2.f);
@@ -449,7 +449,7 @@ void test_memcpy()
    float src2   [Size];
   
   float val = 0;
-  for(int ii=0;ii<Size;ii++){val+=0.1f; src1[ii]=val;src2[ii]=val;sigsrc.val(ii)=val;}
+  for(int ii=0;ii<Size;ii++){val+=0.1f; src1[ii]=val;src2[ii]=val;sigsrc[ii]=val;}
  
   for(int ii=0;ii<4;ii++)
     {

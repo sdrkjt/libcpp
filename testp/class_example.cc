@@ -6,8 +6,8 @@ void module::init(int size){
   Sb.SetSize(size);//Sbs.SetSize(size);
   for(int kk=0;kk<size;kk++)
     {
-      Sa.val(kk) = 0.123f + kk;
-      Sb.val(kk) = 0.789f + kk;
+      Sa[kk] = 0.123f + kk;
+      Sb[kk] = 0.789f + kk;
     }
  
   for (int ii=0;ii<nbLu;ii++ ){

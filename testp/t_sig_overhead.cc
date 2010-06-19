@@ -48,7 +48,7 @@ void test_sig_overhead(){
   ENDTLOOP();
 
   TX sum = 0;
-  for(int ii=0;ii<Size;ii++)sum = sum + cxc.val(ii);
+  for(int ii=0;ii<Size;ii++)sum = sum + cxc[ii];
   cout<<"check sum heavy: "<<sum<<endl;
 
   TLOOP(10);
@@ -59,7 +59,7 @@ void test_sig_overhead(){
   ENDTLOOP();
 
   sum = 0;
-  for(int ii=0;ii<Size;ii++)sum = sum + cxc.val(ii);
+  for(int ii=0;ii<Size;ii++)sum = sum + cxc[ii];
   cout<<"check sum heavy: "<<sum<<endl;
  }
 
@@ -103,7 +103,7 @@ void eltop_sligth(testclass<TX,VY>& Tc, const testclass<TX,VY>& Ta,  const testc
   //  *((adrc++)) = *((adra++)) +  *((adrb++)) ;
 
   for(ii = nb_entier;ii<size_a;ii++ )	
-    Tc.val(ii) = Ta.val(ii) OPID Tc.val(ii);	
+    Tc.bufferA[ii] = Ta.bufferA[ii] OPID Tc.bufferA[ii];	
 
 }
 void eltop_sligth_precalcul(testclass<TX,VY>& Tc, const testclass<TX,VY>& Ta,  const testclass<TX,VY>& Tb)
@@ -121,7 +121,7 @@ void eltop_sligth_precalcul(testclass<TX,VY>& Tc, const testclass<TX,VY>& Ta,  c
   }
 
   for(ii = nb_entier;ii<size_a;ii++ )	
-    Tc.val(ii) = Ta.val(ii) OPID Tc.val(ii);	
+    Tc.bufferA[ii] = Ta.bufferA[ii] OPID Tc.bufferA[ii];	
 
 }
 void test_sig_sligth()	
@@ -135,7 +135,7 @@ void test_sig_sligth()
   TIME("Slight precalcul"+OPNAME); ENDTLOOP();
 
   TX sum = 0;
-  for(int ii=0;ii<Size;ii++)sum = sum + Tc.val(ii);
+  for(int ii=0;ii<Size;ii++)sum = sum + Tc.bufferA[ii];
   cout<<"check sum sligth: "<<sum<<endl;
 
   TLOOP(10); TIME();
@@ -143,7 +143,7 @@ void test_sig_sligth()
   TIME("Slight "+OPNAME); ENDTLOOP();
 
   sum = 0;
-  for(int ii=0;ii<Size;ii++)sum = sum + Tc.val(ii);
+  for(int ii=0;ii<Size;ii++)sum = sum + Tc.bufferA[ii];
   cout<<"check sum sligth: "<<sum<<endl;
   //cout<<"check res: "<<Tc.val(111)<<endl;
 }
@@ -184,7 +184,7 @@ void test_time_ms(){
     cxa.bufferA = (float*)(taddr);//pMEM;
     cxb.bufferA = (float*)(taddr+8192);//(pMEM+8192); 
     cxtmp.bufferA = (float*)(taddr+8192*2+16);//(pMEM+8192*2);
-    for(int ii=0;ii<Size;ii++){cxa.val(ii) = 1;cxb.val(ii) = 1;}
+    for(int ii=0;ii<Size;ii++){cxa[ii] = 1;cxb[ii] = 1;}
     //for(int ii=0;ii<Size;ii++){cxtmp.val(ii) = cxa.val(ii)+cxb.val(ii);}
 
 
@@ -226,11 +226,11 @@ void test_time_ms(){
     T2.print("  Heavy  Compute");
 
     TX sum_sligth = 0;
-    for(int ii=0;ii<Size;ii++)sum_sligth = sum_sligth + Tc.val(ii);
+    for(int ii=0;ii<Size;ii++)sum_sligth = sum_sligth + Tc.bufferA[ii];
     cout<<"check sum_sligth: "<<sum_sligth<<endl;
 
     TX sum_heavy = 0;
-    for(int ii=0;ii<Size;ii++)sum_heavy = sum_heavy + cxtmp.val(ii);
+    for(int ii=0;ii<Size;ii++)sum_heavy = sum_heavy + cxtmp[ii];
     cout<<"check sum_heavy: "<<sum_heavy<<endl;
 }
 

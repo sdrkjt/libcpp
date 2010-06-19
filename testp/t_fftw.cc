@@ -23,10 +23,10 @@ int test_fft(int argc, char **argv)
   for(int ii=0;ii<N;ii++){
     input[ii][0] = 0;
     input[ii][1] = 0;
-    Sin.val(ii) = Cxs(0.0f,0.0f);
+    Sin[ii] = Cxs(0.0f,0.0f);
   }
   input[2][0] = 1.0f; 
-  Sin.val(2) = Cxs(1.0f,0.0f);
+  Sin[2] = Cxs(1.0f,0.0f);
 
   for(int ii=0;ii<10;ii++)
       cout<<"("<<input[ii][0]<<","<<input[ii][1]<<")"<<endl;

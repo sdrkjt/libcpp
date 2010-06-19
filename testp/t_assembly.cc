@@ -155,8 +155,8 @@ void test_complexd(){
   cxa.SetSize(Size);cxb.SetSize(Size);cxc.SetSize(Size);
   for(int kk=0;kk<Size;kk++)
     {
-      cxa.val(kk) = _mm_set_pd(kk*0.1,kk*0.7);
-      cxb.val(kk) = _mm_set_pd(kk*0.11,kk*0.27);
+      cxa[kk] = _mm_set_pd(kk*0.1,kk*0.7);
+      cxb[kk] = _mm_set_pd(kk*0.11,kk*0.27);
     }
   cxc = cxa + cxb;
 }
@@ -169,8 +169,8 @@ void test_complexs(){
   //cxa.SigStep(0,1,Size);
   for(int kk=0;kk<Size;kk++)
     {
-      cxa.val(kk) = Cxs(kk*0.1,kk*0.7);
-      cxb.val(kk) = Cxs(kk*0.11,kk*0.27);
+      cxa[kk] = Cxs(kk*0.1,kk*0.7);
+      cxb[kk] = Cxs(kk*0.11,kk*0.27);
     }
   cxc = cxa * cxb;
   //TIME();

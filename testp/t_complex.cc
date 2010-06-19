@@ -83,8 +83,8 @@ void init(){
   //cxa.SigStep(0,1,Size);
   for(int kk=0;kk<Size;kk++)
     {
-      cxa.val(kk) = Cxds(0.123f + kk,0.456f + kk);
-      cxb.val(kk) = Cxds(0.789f + kk,0.123f + kk);
+      cxa[kk] = Cxds(0.123f + kk,0.456f + kk);
+      cxb[kk] = Cxds(0.789f + kk,0.123f + kk);
     }
 
   //   A = (CType *) AllocMem(Size*sizeof(CType));
@@ -126,7 +126,7 @@ void test_time_ms(){
     cxc = cxa OPID cxb;
     ENDTLOOP();
     T2.stop();
-    res= cxc.val(111).Re();
+    res= cxc[111].Re();
     
     printf("\nFast %s complex operation: ( c[i] =a[i] %s b[i]  for_all_i )\n"
 	   " dim   = %i\n"
