@@ -1,0 +1,625 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.4  (Win32)">
+	<META NAME="CREATED" CONTENT="20090608;22150800">
+	<META NAME="CHANGED" CONTENT="20100414;20245657">
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm"><FONT COLOR="#000000"><U><B><SPAN STYLE="background: #ffffff">IMPORTANT
+NOTES:</SPAN></B></U></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff"><B>SIMD</B>
+(MMX64 ,XMM128,YMM256) introduction in page 98 of optimizing_cpp.pdf</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">register
+for vector operation: MMX 64bits wide, XMM 128bits wide, YMM 256</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">++vector
+must be stored at a memory address that is divisible by 16 (see
+AlignedArray.cc) </SPAN></FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">++not
+recommended to use MMX vectors because these are incompatible with
+floating point code (need to use <SPAN STYLE="text-decoration: none">_mm_empty())</SPAN></SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; text-decoration: none"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">++Before
+you choose to use vector instructions, you have to consider whether
+the resulting code will be faster than the simple instructions
+without vectors. With vector code, you may spend more instructions on
+trivial things such as moving data into the right positions in the
+registers and emulating conditional moves, than on the actual
+calculations. Vector instructions are relatively slow on older
+processors, but the newest processors can do a vector calculation
+just as fast as a scalar (single) calculation. (see
+optimizing_assembly, chapter 13,p107)</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff"><B>Cache</B>
+<B>organization</B>: see optimizing_cpp.pdf, paragraph8.2, p81. See
+also optimizing_assembly.pdf, paragrap11.1, p77. Go to page 5 for
+more detail.</SPAN></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0.2cm"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">Note:
+the cache lines are always aligned to physical addresses divisible by
+the cache line size (normally 64), see the end of page 78 in
+optimizing_assembly.pdf </SPAN></FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff"><B>Alignment</B>
+<B>of</B> <B>data</B>: for optimizing memory access because the cache
+works most efficiently if pieces of data that are used together are
+stored near each other in memory. So:</SPAN></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0.2cm"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">-functions
+and variables that are used together should be stored together (see
+optimizing_cpp 8.3,8.4) </SPAN></FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; text-decoration: none"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">-variable
+should be stored at a memory address divisible by the size of the
+variable.</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; text-decoration: none"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">-The
+caching of data works best if critical data are contained in a small
+contiguous area of memory. The best place to store critical data is
+on the stack. The stack space that is allocated by a subroutine is
+released when the subroutine returns. <U>The same stack space is then
+reused by the next subroutine that is called.</U> Reusing the same
+memory area gives the optimal caching. Variables should therefore be
+stored on the stack rather than in the data segment when possible. (
+<I><SPAN STYLE="font-weight: medium">optimizing_assembly,11.5</SPAN></I><I>p83)</I></SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; text-decoration: none"><FONT COLOR="#000000"><B><SPAN STYLE="background: #ffffff">LIBSIG:</SPAN></B></FONT></P>
+<P ALIGN=LEFT>-Sc = Sa + Sb: operator &ldquo;+&rdquo; creates a tmp
+Sc_tmp with correct size to do (Sa +Sb), then (Sc = Sc_tmp) is done
+by calling the assignment operator, so we need to do a copy and we
+need also initiate the tmp =&gt; use OP to avoid this problem:
+(Sa+Sb) will create an OP to stock all informations, then (Sc = OP)
+will launch the real calculation. 
+</P>
+<P ALIGN=LEFT>-<FONT COLOR="#800000">assignment operator</FONT> : the
+idea is</P>
+<P ALIGN=LEFT>Sc = function() ;// don't use the assignment operator
+if Sc is already initialized 
+</P>
+<P ALIGN=LEFT>Sc = Sa ;// use the assignment operator</P>
+<P ALIGN=LEFT>=&gt; the rule is: <FONT COLOR="#800000">a function
+must not return a Sig </FONT>(rule I)</P>
+<P>Disadvantage: difficult to build the set of functions that
+initiate signal, type Sig S = init_function(...) or Sig S; S =
+init_function(...) 
+</P>
+<P>(giai phap compromise(*): cac ham init duoc phep return a Sig, cac
+ham binh thuong ko duoc phep=&gt; can toi warning message cho user,
+can dinh nghia copy constructor!! =&gt;tot nhat la ca'm su dung)</P>
+<P>for the simplicity, we should define an init_function as: Sig S;
+S.init_function(...);</P>
+<P>-we define the <FONT COLOR="#800000">copy constructor as</FONT>
+<FONT COLOR="#800000">private forever </FONT>to prevent copying (this
+helps verifying that all function arguments must be defined as const
+&amp; ) .</P>
+<P>To create new signal, the rule must be: <FONT COLOR="#800000">Sig
+x; x = ... </FONT>(rule II)</P>
+<P>as the <FONT COLOR="#800000">c</FONT>opy constructor is private<FONT COLOR="#800000">
+</FONT>we cannot define a function that returns a Sig, good !! rule
+(I) is respected.</P>
+<P>(neu de ton tai <FONT COLOR="#800000">copy constructor, </FONT>cach
+tot nhat la dinh nghia no' nhu reference. Vi neu user co' dinh nghia
+cac parameter cua 1 function ko phai la (const &amp;) thi dieu nay
+cung ko gay anh huong den performance, se ko co' bat ki data copy nao
+xay ra. Them nua, dieu nay cho phep xay dung de dang cac ham de
+initiate signal voi giai phap compromise(*). Bat tien la: co the nham
+lan giua reference va assignment operation, giua (Sig Sc = Sa) va (Sc
+= Sa) =&gt; tot nhat la cam su dung :) )</P>
+<P>*************************************01/02/09****************************************</P>
+<P><U><B>MODIF:</B></U></P>
+<P>1. define macro OVERHEAD():</P>
+<P>why: function overhead() doesn't work with option -O3 
+</P>
+<P>usage: a call to OVERHEAD() will set value of speed::overhead 
+</P>
+<P ALIGN=LEFT>2. use option -fno-builtin</P>
+<P>why: The Gnu compiler often inserts built-in code instead of the
+most common memory and string instructions. The built-in code is not
+optimal. Use option -fno-builtin to get library versions instead. 
+</P>
+<P>3. add operator with scalar: eg ( Sig+scalar) (scalar * Sig)
+(<FONT COLOR="#ff3366">conversion from scalar to vector is not
+optimized</FONT> ) 
+</P>
+<P><U><B>NOTE:</B></U></P>
+<P>-Functions with extern &quot;C&quot; declaration have no name
+mangling</P>
+<P>-Intrinsic functions are primitive operations in the sense that
+each intrinsic function call is translated to just one or a few
+machine instructions (a lot of intrinsic functions for vector are
+defined in &lt;emmintrin.h&gt;). Using intrinsic functions is an
+easier way of doing high level assembly coding in C++. See
+p.31-&ldquo;optimizing_assembly.pdf&rdquo; and
+p.101-&ldquo;optimizing_cpp.pdf&rdquo;</P>
+<P>-Same performance using _mm_div_ps or __builtin_ia32_divps or
+[Vect(opA,VY,ii)/Vect(opB,VY,ii)]</P>
+<P>-Use __v4sf instead of __m128 for speedup when option -O3 is
+activated (20.000cycles instead of 30.000cycles for one addition)</P>
+<P>see in types.hh: typedef AlignedArray&lt;float,__v4sf &gt; Sigf;</P>
+<P><BR><BR>
+</P>
+<P>*************************************13/02/09*****************************************</P>
+<P><U><B>MODIF:</B></U></P>
+<P>- Multiple operations are now possible (eg Sc = Sa * Sb + 0.2f )</P>
+<P>- Sc = Sa+Sb; if Sc is initialized before this addition, the
+performance is much more better????</P>
+<P><U><B>NOTE:</B></U></P>
+<P><B>-pointer type conversion</B>: no extra code needed, but not
+safe</P>
+<P><B>-reinterpreting the type of an object: </B>
+</P>
+<P>eg : float x; *(int*)&amp;x |= 0x80000000; // Set sign bit of x,
+in this case x = -abs(x)</P>
+<P><B>-pointer arithmetic : </B>struct abc {int a; int b; int c;};
+abc * p; int i; p = p + i;</P>
+<P>Here, the value that is added to p is not i but i*12, because the
+size of abc is 12 bytes</P>
+<P>The object pointed to can be accessed approximately two clock
+cycles after the value of the</P>
+<P>pointer has been calculated. Therefore, x = *(p++) is more
+efficient than x = *(++p) .</P>
+<P ALIGN=LEFT>-<B>const_cast</B>: no extra code, a useful way of
+making sure that one function can modify a constant X, while</P>
+<P>others functions can not</P>
+<P>eg: *const_cast&lt;int*&gt;(&amp;x) += 2 // change value of
+constant x</P>
+<P><B>-constant reference (const &amp;) </B>: can take an expression
+as function input, while a normal reference requires a variable as
+input.</P>
+<P><B>-Array: </B>An array is implemented simply by storing the
+elements consecutively in memory. No information about the dimensions
+of the array is stored (faster but less safe) =&gt; need to define a
+SafeArray class with bounds checking. Address of X[i][j] is (i *
+col_size + j), so col_size should be a power of 2, and make sure that
+the elements of X are accessed sequentially (for data caching), eg:</P>
+<P>for (i = 0; i &lt; rows; i++) for (j = 0; j &lt; columns; j++)
+X[i][j] += x;// Don't change the order of Loop</P>
+<P><BR><BR>
+</P>
+<P>*************************************14/02/09*****************************************</P>
+<P><U><B>MODIF:</B></U></P>
+<P>In AlignedArray.cc</P>
+<P>-Add assignment operator (type Sc = Sa)</P>
+<P>-Possible to write Sc = const (eg: Sc = 0). 
+</P>
+<P>*************************************15/02/09*****************************************</P>
+<P><U><B>MODIF:</B></U></P>
+<P>In AlignedArray.hh</P>
+<P>-Add ones(int size) and zeros(int size). 
+</P>
+<P>Usage: Sigf Sc; Sc.zeros(size);</P>
+<P>*************************************20-26/02/09*****************************************</P>
+<P><U><B>MODIF:</B></U></P>
+<P>1.add Complex : 
+</P>
+<P>-2 modes: double&amp;simple precision (Cxs,Cxd)</P>
+<P>-define new signals: Sigcxs , Sigcxd</P>
+<P>-define new type of vector intrinsic : v2Cxs , new intrinsic
+functions for Cxs are defined in sig_v2Cxs.hh</P>
+<P>-define new operators&amp;functions: conj, abs2, opposite.</P>
+<P>*************************************27/03/09*****************************************</P>
+<P>Using reciprocal instruction for fast division with
+&ldquo;<B>newton-raphson</B>&ldquo; formula (optimizing_assembly &ndash;
+p137)</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; font-weight: medium"><FONT FACE="Arial, sans-serif"><FONT SIZE=3 STYLE="font-size: 13pt"><FONT COLOR="#800000"><B>The
+pipeline in a modern microprocessor</B></FONT> contains many stages,
+including instruction fetch,decoding, register allocation and
+renaming, &micro;op reordering, execution, and retirement. Handling
+instructions in a pipelined manner allows the microprocessor to do
+many things at</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=3 STYLE="font-size: 13pt"><SPAN STYLE="font-weight: medium">the
+same time. While one instruction is being executed, the next
+instructions are being fetched and decoded. Handling instructions in
+a pipelined manner allows the microprocessor to do many things at </SPAN>the
+same time.</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm">-<FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>CPU
+can do more than one thing at the same time</B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">**Most
+CPU&rsquo;s have </FONT></FONT>at least<SPAN STYLE="background: #ffff00">
+</SPAN><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="background: #ffff00">two
+integer ALU&rsquo;s </SPAN></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">(Arithmetic
+Logic Units) so that they can do </FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><I><U>two
+or more integer additions per clock cycle</U></I></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">.
+There is usually </FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="background: #ffff00">one
+floating point add unit</SPAN></FONT></FONT> <FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">and
+</FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="background: #ffff00">one
+floating point multiplication unit</SPAN></FONT></FONT> <FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">so
+that it is possible to do </FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><I><U>a
+floating point addition and a multiplication at the same time</U></I></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><I>.</I></FONT></FONT>
+<FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">There
+is at least </FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="background: #ffff00">one
+memory read unit</SPAN></FONT></FONT> <FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">and
+</FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="background: #ffff00">one
+memory write unit</SPAN></FONT></FONT> <FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">so
+that it is possible to </FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><I><U>read
+and write to memory at the same time</U></I></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">.
+The maximum average number of &micro;ops per clock cycle is three or
+four so that it is possible, for example, to do </FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><I><U>an
+integer operation, a floating point operation, and a memory operation
+in</U></I></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><I><U>the
+same clock cycle</U></I>. The maximum number of arithmetic operations
+(i.e. anything else than memory read or write) is limited to two or
+three &micro;ops per clock cycle, depending on the CPU.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">**Floating
+point operations are usually pipelined so that a new floating point
+addition can start before the previous addition is finished.</FONT></FONT></P>
+<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">(optimizing_assembly
+&ndash; p58)</FONT></FONT></P>
+<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">-</FONT></FONT><B>Out-of-order
+execution </B><SPAN STYLE="font-weight: medium">(microarchitecture &ndash;
+p6, </SPAN><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="font-weight: medium">optimizing_assembly
+&ndash; p58,59</SPAN></FONT></FONT><SPAN STYLE="font-weight: medium">):</SPAN><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">The
+sixth generation of microprocessors, beginning with the PPro,
+provided an important</FONT></FONT> <FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">improvement
+in microarchitecture design, namely out-of-order execution. The idea
+is that if the execution of a particular instruction is delayed
+because the input data for the instruction are not available yet,
+then the microprocessor will try to find later instructions that it
+can do first, if the input data for the latter instructions are ready
+.</FONT></FONT></P>
+<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>-microoperations
+</B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="font-weight: medium">(microarchitecture
+&ndash; p6)</SPAN></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>:
+</B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">The
+microprocessors with out-of-order execution splits all instructions
+into microoperations - abbreviated &micro;ops or uops. </FONT></FONT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">A
+simple instruction such as </FONT></FONT></FONT><FONT COLOR="#37379a"><FONT FACE="Courier, monospace"><FONT SIZE=2 STYLE="font-size: 11pt">ADD
+EAX,EBX </FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">generates
+only one &micro;op, while an instruction like </FONT></FONT></FONT><FONT COLOR="#37379a"><FONT FACE="Courier, monospace"><FONT SIZE=2 STYLE="font-size: 11pt">ADD
+EAX,[MEM1] </FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">may
+generate two: one for reading from memory into a temporary (unnamed)
+register, and one for adding the contents of the temporary register
+to </FONT></FONT></FONT><FONT COLOR="#37379a"><FONT FACE="Courier, monospace"><FONT SIZE=2 STYLE="font-size: 11pt">EAX</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">.
+The instruction </FONT></FONT></FONT><FONT COLOR="#37379a"><FONT FACE="Courier, monospace"><FONT SIZE=2 STYLE="font-size: 11pt">ADD
+[MEM1],EAX </FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">may
+generate three &micro;ops: one for reading from memory, one for
+adding, and one for writing the result back to memory. </FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><I><U>The
+advantage of this is that the &micro;ops can be executed out of
+order</U></I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">.</FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>-Register
+renaming</B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="font-weight: medium">(microarchitecture
+- p7)</SPAN></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>:
+</B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="font-weight: medium">one
+logical register can be automatically mapped to multiple physical
+registers by the microprocessor (very smart)</SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>-Execution
+Unit + Execution Port </B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="font-weight: medium">(</SPAN></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><I><SPAN STYLE="font-weight: medium">see
+instruction_tables p4,5</SPAN></I></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="font-weight: medium">)</SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-weight: medium"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">Each
+uop goes to appropriate Execution Port before going to the right
+Execution Unit.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-weight: medium"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt">One
+uop/Port at a time</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>Pentium
+M:</B></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>p0:
+</B>Port 0: ALU, etc.</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>p1:
+</B>Port 1: ALU, jumps</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>p01:
+</B>Can go to either port 0 or port 1, whichever is vacant first</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>p2:
+</B>Port 2: load data, etc.</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>p3:
+</B>Port 3: address generation for store</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>p4:
+</B>Port 4: store data</FONT></FONT></P>
+<P><BR><BR>
+</P>
+<P>*************************************28/03/09*****************************************</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm"><B>I.Cache Organization
+Review: </B>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; font-weight: medium"><FONT COLOR="#000000"><I><SPAN STYLE="background: #ffffff">see
+optimizing_cpp.pdf, paragraph8.2, p81. See also
+optimizing_assembly.pdf, paragraph11.1, p77. </SPAN></I></FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; font-weight: medium"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">-Memory
+Write cache miss is a serious problem. This can be avoided by using
+the non-temporal write instructions . These instructions write
+directly to memory without loading a cache line.</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; font-weight: medium"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">-Measure
+of performance when cache miss: </SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="background: #ffffff">see</SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="background: #ffffff">optimizing_cpp.pdf,
+paragraph8.10, p90</SPAN></I></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; font-weight: medium"><FONT COLOR="#000000"><I><SPAN STYLE="background: #ffffff">-</SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: #ffff00">Explicit
+Cache Control: </SPAN></SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="background: #ffffff">see
+optimizing_cpp.pdf, paragraph8.11, p92</SPAN></I></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; font-style: normal; font-weight: medium">
+<FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">The prefetch
+instruction can be used for fetching a cache line that we expect to
+use later in the program flow.</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; font-style: normal; font-weight: medium">
+<FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">Ex:
+&quot;prefetchnta (%%esi) \n&quot; //get the data into the cache</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; font-style: normal; font-weight: medium">
+<FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">Explicit data
+prefetching with the PREFETCH instructions can sometimes improve
+cache performance, but in most cases the automatic prefetching is
+sufficient. Modern processors prefetch data automatically thanks to
+out-of-order execution and advanced prediction mechanisms. </SPAN></FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; font-style: normal"><FONT COLOR="#000000"><B><SPAN STYLE="background: #ffffff">Testing
+Speed:</SPAN></B></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; font-style: normal; font-weight: medium">
+<FONT COLOR="#000000"><SPAN STYLE="background: #ffff00">When
+measuring clock cycles that a piece of code always takes longer time
+the first time it is executed where it is not in the cache.
+Furthermore, it may take two or three iterations before the branch
+predictor has adapted to the code. The first measurement gives the
+execution time when code and data are not in the cache. The
+subsequent measurements give the execution time with the best
+possible caching.</SPAN></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0.2cm; font-weight: medium"><FONT COLOR="#000000"><I><SPAN STYLE="background: #ffffff">See
+optimizing_cpp.pdf, Testing Speed p137</SPAN></I></FONT></P>
+<P><B>My Test: -</B>for vector size = 8192, and i use asm inline code
+in the test. The result is that: it takes 50000cycles in the first
+call, but only 19000cyles in the second call. -if we use <SPAN STYLE="background: #ffff00">getchar()</SPAN>
+after the first call, the cache is polluted by other process (I
+think), so the second call takes more time (in the worst case , it
+takes more than 50000cycles) -solution: all signals should be defined
+and initialized at the beginning, the total size should be less than
+the L2 cache size (256KB-&gt;2MB in Pentium4) . See &ldquo;example.cc&rdquo;
+for more detail.</P>
+<P ALIGN=JUSTIFY><B>I.MASM vs AT&amp;T Syntax</B></P>
+<P>-Theory: <I>see optimizing_assembly p39</I></P>
+<P>-Example: for MASM see AMlib, for AT&amp;T see SIMDx86 and libSIMD</P>
+<P><B>III.ASM Examples:</B></P>
+<P>1.SIMDx86: a library for image processing<B>, </B>uses Gnu Inline
+Asm syntax</P>
+<P>-support both SSE2(xmm),3DNOW(mmx)</P>
+<P>-support aligned and unaligned data (with movaps,movups): for
+aligned data, see &ldquo;aligned_vector.c&rdquo; or
+&ldquo;aligned_matrix.c&rdquo;</P>
+<P>-example with loop: see &ldquo;image.c&rdquo;</P>
+<P>2.libSIMD: uses Gnu Inline Asm syntax</P>
+<P>-support only 3DNOW (a litle code for SSE2 can be found in
+&ldquo;vectors.c&rdquo;)</P>
+<P>-example with loop: see &ldquo;arrays.c&rdquo;</P>
+<P>*************************************10/04/09*****************************************</P>
+<P><B>Overhead of libsig:</B></P>
+<P>*Test result can be found in res_sig_overhead.txt</P>
+<P>8192: overhead = 1000/21500 
+</P>
+<P>2048: overhead = 9ms/102ms</P>
+<P>256 : overhead = 560/340</P>
+<P>*overhead estimated for eltwise ~~ 600cycles/call</P>
+<P>*Dynamic Alloc: unstable performance</P>
+<P>* Sig.bufferA should be avoided in a loop, it should be computed
+outside the loop: 
+</P>
+<P>don't use: Vect(Tc,__m128,ii) = Vect(Ta,__m128,ii) +
+Vect(Tb,__m128,ii); 
+</P>
+<P>but use : *((__m128*)(adrc+ii)) = *((__m128*)(adra+ii)) +
+*((__m128*)(adrb+ii)) ;</P>
+<P>(problem detected in add_sligth but not detected in sig_elt. Asm
+code is checked before confirming this )</P>
+<P><I><U>to avoid this instability, we should use asm inline,
+independent of compilation</U></I></P>
+<P>*************************************17/04/09*****************************************</P>
+<P>-Import library MINIBLAST which uses Gnu Inline Asm</P>
+<P>Functions: DOT, AXPY, SCALE,SUM,MIN,MAX,SQUARE,SET,SWAP... 
+</P>
+<P>-Testing Speed in mili-second with t_assembly: 
+</P>
+<P>+SAXPY in miniblast gives almost the same performance as the code
+using intrinsic function (65&gt;&lt;72ms/(2048x50000)).</P>
+<P>+Coherence between the result in ms and the result in clock cycle.
+</P>
+<P>-<U>Remark</U>: the test in mili-second is very useful. It gives
+us information about the best performance of our algorithm (with
+perfect caching) .</P>
+<P>Attention: don't implement a function, that uses asm inline, in
+the file containing the function main()</P>
+<P>*************************************24/04/09*****************************************</P>
+<P><B>PROJECT REVIEW:</B></P>
+<P><B>1. Short-term objective: </B><SPAN STYLE="font-weight: medium">building</SPAN>
+<B>real time software dvb-t modulator</B></P>
+<P STYLE="font-weight: medium">-xay dung nen tang cho cac module, ko
+can chu trong qua den optim, sau nay se optimiser chi tiet.</P>
+<P STYLE="font-weight: medium">-phai xay dung 1 cau truc chuong trinh
+phu hop de thuan tien cho buoc tiep theo la optimisation.</P>
+<P><B>2. Realization:</B></P>
+<P><SPAN STYLE="font-weight: medium">-</SPAN>Su dung 2 thu vien co
+san: fftw va Karn's viterbi Day la hai thu vien tuong doi optimis&eacute;,
+opensource, populaire. Dung lam r&eacute;f&eacute;rence cho viec
+optimisation sau nay.</P>
+<P>-Hoan thien libsig: +eltwise: thiet ke nhu hien nay (dung
+intrinsic) la hop ly. Sau nay co the thay intrinsic bang ASM inline
+neu can thiet. +fft: tune to fftw</P>
+<P>-Viet code: +ko su dung allocation dynamiqe cho vecteur, su dung
+Sig. Sau nay se lua chon phuong phap toi uu de allouer les signaux
+(co the dung allocation statique,array,...). Avec la structure de
+Sig, on peut facilement contr&ocirc;ler l'allocation de m&eacute;moire
+en modifiant 2 m&eacute;thodes dans la class Sig: SetSize et
+D&eacute;structeur de Sig. +</P>
+<P>-Test &amp;Validation: T1: su dung rdtsc de do thoi gian
+execution, so sanh voi thoi gian thuc T2: ket noi voi d&eacute;codeur.
+Co the dung USRP hoac phuong phap cua Bellard (su dung VGA card)</P>
+<P>*************************************26/04/09*****************************************</P>
+<P><B>MEMORY ALLOCATION</B></P>
+<P>-Ne pas utiliser l'allocation dynamique car elle n'est pas
+efficient (voir optimizing_cpp 8.6p84 ) <B>Note:</B> It is often more
+efficient to allocate one big block of memory for all the objects
+(memory pooling) than to allocate a small block for each object. 
+</P>
+<P>-M&eacute;thode Bas&eacute;e sur la fonctionnement de stack: non
+optimale. Ex: f1{ Sig x; x.ones(100); f2{x,y,z};...more compute...;}
+, x est mort dans f2 mais elle ne sera d&eacute;sallou&eacute;e que &agrave;
+la fin de f1.</P>
+<P>==&gt;<U> la n&eacute;cessit&eacute; de construire une nouvelle
+allocateur de m&eacute;moire</U> qui fonctionne sur le principe de
+l'allocation statique (on conna&icirc;t tous &agrave; la
+compilation): r&eacute;sultat est une liste des signaux qui donne des
+informations sur la taille, l'adresse relative dans la m&eacute;moire.</P>
+<P>*************************************03/05/09*****************************************</P>
+<P>-<B>activate the copy constructor</B> of libsig, why? to allow the
+construction of subsig.</P>
+<P>-add functions to create <B>subsig</B>.</P>
+<P>-add sig_fft: all interface functions for FFT should be defined
+here.</P>
+<P>-enable <B>Conversion between Signals</B>: no impact on
+performance, very efficient</P>
+<P>ex application: Sigcxs * float &lt;=&gt; Sigfl(Sigcxs) * float</P>
+<P>*************************************10/05/09*****************************************</P>
+<P><B>Revision</B></P>
+<P>1. la th&eacute;orie de l'information: 
+</P>
+<P>-livre de Thomas Cover : une tr&egrave;s bonne r&eacute;f&eacute;rence,
+une d&eacute;monstration d&eacute;taill&eacute; et pr&eacute;cise
+pour la th&eacute;or&egrave;me de Shannon. 
+</P>
+<P>-note de Samson Lasaulce: cette transparent contient une liste des
+th&eacute;or&egrave;mes importantes. Pourtant la d&eacute;monstration
+n'est pas pr&eacute;cise.</P>
+<P>2. la th&eacute;orie de l'estimation: voir la note du cour
+INMA1731 dans la r&eacute;p&eacute;toire &quot;Filtrage et
+Pr&eacute;diction&quot; de la biblioth&egrave;que</P>
+<P>-les estimateurs de bayes: moyenne conditionelle, MAP.</P>
+<P>-ML</P>
+<P>-Lin&eacute;aire &agrave; variance minimale</P>
+<P>-Des Moindres Carr&eacute;s: prendre le point le plus proche de
+l'observation, pas besoin d'informations statistiques</P>
+<P>Cas gaussien, MC &lt;=&gt; MV</P>
+<P>*************************************11/05/09*****************************************</P>
+<P><B>DVBT Modulator, An Overview</B></P>
+<P STYLE="text-decoration: none">1.Input from MPEG-2 Multiplexer:
+TS+Scrambler</P>
+<UL>
+	<P STYLE="text-decoration: none">2.Outer Coder : the Reed-Solomon 
+	</P>
+	<P STYLE="text-decoration: none">3.Outer Interleaver: The
+	convolutionally interleaved bytes 
+	</P>
+	<P>4.Inner Coder : The convolutionally encoded bits 
+	</P>
+	<P>The punctured bits 
+	</P>
+	<P>5.Inner Interleaver: The bit interleaved bytes 
+	</P>
+	<P>6.Symbol Interleaver</P>
+	<P>7.Pilots&amp;TPS adder</P>
+	<P>8.Mapper 
+	</P>
+	<P>9.Frame Adaptation</P>
+	<P>10.OFDM</P>
+	<P>11.Guard interval insertion 
+	</P>
+	<P>13.The time signal 
+	</P>
+	<P>14.The output spectrum 
+	</P>
+	<P>15.The output amplitude distribution 
+	</P>
+</UL>
+<P>*************************************16/05/09*****************************************</P>
+<P>-add DUMPBIT in cpp_monit: LSB at lower ADR, MSB at higher ADR</P>
+<P>-creat sig_macros: add CHECK_INIT_SIG , EXTRACTBIT</P>
+<P>-start DVBT: scrambler done</P>
+<P>*************************************31/05/09*****************************************</P>
+<P>-<B>using namespaces std</B>, do not use macro &ldquo;define&rdquo;
+for this problem</P>
+<P>-<B>W_UALIGNED</B>: this flag is used to activate the warning
+message when memory unaligned 
+</P>
+<P>usage: put it in the setup file</P>
+<P>-<B>RS encoder done:</B> &ldquo;_mm_slli_si128&rdquo; for left
+shift; &ldquo;_mm_xor_si128,pxor&rdquo; for xor operation</P>
+<P>SSE2 instructions for XOR: 
+</P>
+<P>&ldquo;_mm_xor_si128,pxor&rdquo; (for integer); &ldquo;_mm_xor_pd,
+xorpd&rdquo; (for double); &ldquo;_mm_xor_ps, xorps &ldquo; (for
+float) 
+</P>
+<P>-<B>Copy a Sig</B>: if memory unaligned then automatically switch
+to memcpy 
+</P>
+<P>*************************************06/06/09*****************************************</P>
+<P><B><SPAN STYLE="background: #ffff00">Interfacing with DVB-T
+baseband </SPAN></B>
+</P>
+<P>1.VGA card(realtime test): use harmonic frequency, realtime test
+possible!! 
+</P>
+<P>2.USRP(realtime test): use harmonic frequency 
+</P>
+<P>3.AGILENT signal generator (functional test, not realtime): test
+with correct frequency output 
+</P>
+<P>opensource DVB-T (Gordon Cichon) written in mathlab can be used to
+check functionality</P>
+<P>*************************************30/10/09*****************************************</P>
+<P><SPAN STYLE="background: #ffff00">LIBRUN(SCHEDULER) DONE </SPAN>
+</P>
+<OL>
+	<LI><P>SDRBuffer: 
+	</P>
+	<P>-Circular Buffer is chosen, with 2 interface methods: put_sample
+	&amp; get_sample</P>
+	<P>-Should be used for interfacing between 2 modules in two cases
+	below:</P>
+	<P>+ they cannot be connected directly(output of one is not
+	compatible with the input of other). 
+	</P>
+	<P>+ they are run on different threads. 
+	</P>
+	<P>Do not use buffer if they can be connected directly and are run
+	in one thread</P>
+	<LI><P>SDRModule: (Buffer Input, Buffer Output) + 1 Compute</P>
+	<P>-m_run(): <SPAN STYLE="background: #ffff00">asynchronous
+	implementation</SPAN> =&gt; convenient+easy to use with thread 
+	</P>
+	<LI><P>SDRApplication:</P>
+	<P>-connecting modules: buffer assignment</P>
+	<P>-run(): throwing the m_run() for all modules.</P>
+</OL>
+<P><U>Property:</U> <B>all blocs are independently implemented</B> 
+</P>
+<P><U>Compare to a synchronous implementation:</U></P>
+<P>1.Advantage: 
+</P>
+<P>-easy to implement a bloc: not necessary to known about exterior
+blocs.</P>
+<P>-a simple way to connect all blocs together</P>
+<P>-easy to use with thread</P>
+<P>2.Disadvantage: more memory, more data transfer (more overhead)</P>
+<P><B>=&gt;trade-off</B>: integrate all small computes in one big
+compute, then this big compute can be implemented in one bloc. Do not
+use bloc for one small compute.</P>
+<P STYLE="font-style: normal"><U>2 OPTIONs for LIBRUN: </U>
+</P>
+<P>-TIME_CORE is used when measuring performance of the processing
+code (method &ldquo;compute&rdquo;)</P>
+<P>-TIME_MRUN is used when measuring performance of m_run() &lt;=&gt;
+processing+data transfer (with buffer)</P>
+<P><FONT SIZE=4><B>Libsig</B></FONT>: new options added as
+BOUNDSCHECKING and SigName. Use these options only for debuging</P>
+<P><B><SPAN STYLE="background: #ffff00">DVBT_MODU: </SPAN></B>
+</P>
+<P>-Coding part: use librun for bloc connection, matching done 
+</P>
+<P><B>[TS gen]==&gt;[OuterCoder]==&gt;[InnerCoder]==&gt;[InnerIntrlv]</B></P>
+<P>OuterCoder = (Scrambler + RS Encoding + Byte Interleaving)</P>
+<P>InnerCoder = (InnerCoder + Puncturing)</P>
+<P>InnerIntrlv = (Bit interleaver + Symbol Interleaver)</P>
+<P>-Start building ofdm part.</P>
+<P>*************************************30/12/09*****************************************</P>
+<P>-Real-time DVBT transmission: 2k 2/3 QAM16 7MHz/8MHz, 554MHz</P>
+<P>-System Test:
+MpegFile-&gt;OpenCaster-&gt;DvbModu-&gt;USRP-&gt;PinnacleUsb-&gt;VLCPlayer</P>
+<P>-TODO: completing TPS encoding part + testing other modes 
+</P>
+<P>*************************************01/02/10*****************************************</P>
+<P>-start working on hardware project 
+</P>
+<P>-design choice: CypressUSB(CY7C68013A)+QDUC(AD9957)</P>
+<P>*************************************01/03/10*****************************************</P>
+<P>-start working on CY7C68013A Development Board</P>
+<P>-setup&amp;test libs on the host side</P>
+<P>*************************************01/04/10*****************************************</P>
+<P>-Real-time PAL transmission: PAL(I), 8MHz, 170MHz</P>
+<P>-System Test: JpegFile2rgb-&gt;PalModu-&gt;USRP-&gt;TV</P>
+<P>-TODO: test with MPEG input</P>
+</BODY>
+</HTML>

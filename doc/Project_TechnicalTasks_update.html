@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.1  (Unix)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20100404;19532300">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		TD P { margin-bottom: 0cm; direction: ltr; color: #000000; text-align: left; widows: 0; orphans: 0 }
+		TD P.western { font-family: "Liberation Serif", "Times New Roman", serif; font-size: 12pt; so-language: en-US }
+		TD P.cjk { font-family: "DejaVu LGC Sans"; font-size: 12pt; so-language: zxx }
+		TD P.ctl { font-family: "DejaVu LGC Sans"; font-size: 12pt; so-language: zxx }
+		P { margin-bottom: 0.21cm; direction: ltr; color: #000000; text-align: left; widows: 0; orphans: 0 }
+		P.western { font-family: "Liberation Serif", "Times New Roman", serif; font-size: 12pt; so-language: en-US }
+		P.cjk { font-family: "DejaVu LGC Sans"; font-size: 12pt; so-language: zxx }
+		P.ctl { font-family: "DejaVu LGC Sans"; font-size: 12pt; so-language: zxx }
+		PRE { direction: ltr; color: #000000; text-align: left; widows: 0; orphans: 0 }
+		PRE.western { font-family: "Liberation Mono", "Courier New", monospace; so-language: en-US }
+		PRE.cjk { font-family: "Liberation Mono", "Courier New", monospace; so-language: zxx }
+		PRE.ctl { font-family: "Liberation Mono", "Courier New", monospace; so-language: zxx }
+		A:link { so-language: zxx }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" DIR="LTR">
+<TABLE WIDTH=661 BORDER=0 CELLPADDING=0 CELLSPACING=0 STYLE="page-break-before: always">
+	<COL WIDTH=661>
+	<TR>
+		<TD WIDTH=661 VALIGN=TOP BGCOLOR="#ccffff">
+			<P CLASS="western" STYLE="margin-bottom: 0.5cm"><FONT SIZE=5>Nghien
+			cuu, thiet ke, xay dung he thong phat thanh, truyen hinh</FONT></P>
+			<P CLASS="western" STYLE="margin-bottom: 0.5cm"><A NAME="lw_1242334444_0"></A>
+			<FONT SIZE=5>--SOFTWARE: hoan thien cac thu vien tinh toan va giai
+			thuat<BR>--HARDWARE: based on SIMD processor (PC or DSP)<BR>**on
+			PC or other platform, simpler and cheaper</FONT></P>
+			<P CLASS="western"><FONT SIZE=5>**USB connection + QDUC</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<PRE CLASS="western"><I><B>Software</B></I>:
++xay dung thu vien tinh toan va do hoa.
++viet giai thuat cho cac standard.
+
+<I><B>Hardware</B></I>: 
+1.Test&amp;Validation
++su dung cac thiet bi co san tren thi truong nhu USRP cho frontend.
++xay dung co so du lieu: cac fichier d'acquisition (samples) cho cac standard(FM,AM,DRM,DAB,GPS,PAL-SECAM,NTSC,ATSC,DVB-T,CMMB,DTMB, ...)
+2.Implementation: USB+QDUC
+ 
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt"><B>FLOT DE DEVELOPPEMENT</B></FONT></FONT>
+
+<B>PHASE 1: xay dung cong cu </B>
+<B>A, Thu vien C++ cho signal processing (libsig):</B>
+co cac uu diem:
+-vector processing.
+-fast fft calculations.
+-support single &amp; double precision.
+<I><B>thu vien bao gom:</B></I>
+<I><U>a,Vectorial calculations</U></I>
+- cac phep toan co ban voi vector +, -, *, mul_elt, div_elt, =,... (eltwise)
+- exp, cos, sin, arg, sqrt, max
+- fft, filter, sliding-windows, autocorrelation.
+<I><U>B,Scalar calculations</U></I>
+
+<B>B, Thu vien do hoa (graphic)</B>
+-plot, figure
+-spectrum analyzer
+
+<B>C, Soft FEC (viterbi, reed solomon, ldpc decoder)</B>
+<FONT COLOR="#2300dc"><I><B>(point critique)</B></I></FONT>
+
+<B>PHASE 2: xay dung cac ung dung</B>
+<B>A, Viet cac ung dung mau don gian, ko yeu cau toc do xu ly nhanh</B>
+-DRM modulator&amp;demodulator
+-DAB modulator&amp;demodulator
+<B>B, Viet cac ung dung yeu cau toc do xu ly nhanh</B>
+-CMMB, DTMB modulator&amp;demodulator
+-DVB-T modulator&amp;demodulator
+-ATSC  modulator&amp;demodulator
+
+<B>PHASE 3:</B>
+-ket noi voi audio&amp;video decoder
+-kiem tra toan bo he thong 
+
+<B>PHASE 4: hoan thien san pham</B>
+xay dung giao dien do hoa cho san pham, cho phep nguoi dung thay doi cac parameters 
+cua he thong en temps réel.
+
+<U><B>NOTEs:</B></U>
+
+I.Su dung soft modulator:
+nhung loi the cho nha thiet ke demodulator:
+-co the so sanh ket qua thu duoc voi reference mot cach nhanh chong va thuan tien
+
+II.Su dung BaseBand Fader:
+-khu spurs and images caused by the up and down conversions of traditional RF faders
+
+<B>DOCUMENTs</B>
+
+
+<FONT COLOR="#0000ff"><FONT SIZE=4><B>RESULTS</B></FONT></FONT>
+
+-30/12/09: Real-time DVBT Transmission
+-01/04/10: Real-time PAL Transmission
+
+
+<FONT COLOR="#0000ff"><FONT SIZE=4><B>ON GOING</B></FONT></FONT>
+
+<I>from higher priority to lower priority</I>
+
+1.Hardware implementation
+
+2.SoraPlayer (user interface)
+  VideoCaster, CameraCaster, webTVCaster, IPTVCaster
+
+3.Support MultiPlatform: Windows+Linux
+
+4.DVBT2/S2/C2
+
+5.DAB,DRM,DVB-C
+6.RFID,GPS</PRE>
+</BODY>
+</HTML>

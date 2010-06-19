@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.4  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20100414;20212690">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-bottom: 0.21cm; direction: ltr; color: #000000; text-align: left; widows: 0; orphans: 0 }
+		P.western { font-family: "Liberation Serif", "Times New Roman", serif; font-size: 12pt; so-language: en-US }
+		P.cjk { font-family: "DejaVu LGC Sans"; font-size: 12pt; so-language: zxx }
+		P.ctl { font-family: "DejaVu LGC Sans"; font-size: 12pt; so-language: zxx }
+		TD P { margin-bottom: 0cm; direction: ltr; color: #000000; text-align: left; widows: 0; orphans: 0 }
+		TD P.western { font-family: "Liberation Serif", "Times New Roman", serif; font-size: 12pt; so-language: en-US }
+		TD P.cjk { font-family: "DejaVu LGC Sans"; font-size: 12pt; so-language: zxx }
+		TD P.ctl { font-family: "DejaVu LGC Sans"; font-size: 12pt; so-language: zxx }
+		PRE { direction: ltr; color: #000000; text-align: left; widows: 0; orphans: 0 }
+		PRE.western { font-family: "Liberation Mono", "Courier New", monospace; so-language: en-US }
+		PRE.cjk { font-family: "Liberation Mono", "Courier New", monospace; so-language: zxx }
+		PRE.ctl { font-family: "Liberation Mono", "Courier New", monospace; so-language: zxx }
+		A:link { so-language: zxx }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" DIR="LTR">
+<PRE CLASS="western"><B>Chu de chinh cua project: Xu ly tin hieu tren PC</B>
+-xay dung bo cac cong cu lam co so cho Software Radio.
+-xay dung cac he thong xu ly tin hieu <FONT COLOR="#0000ff"><B>thoi gian thuc</B></FONT> (radio, tivi, wifi, ...) ung dung suc manh tinh toan cua PC, lay toc do xu ly lam tieu chi' chi'nh.
+Tinh kha thi:
+-PC co kha nang tinh toan ngay cang manh voi su xuat hien cua multicore,simd.
+-Gia thanh cua PC ngay cang giam cung voi su xuat hien cua netbook gia re.
+-Co the chay ket hop voi nhieu ung dung tren PC: phan mem nghe nhac, xem video,...
+-Tan dung cac thiet bi ngoai vi cua PC nhu: man hinh,ban phim,ket noi internet,... 
+
+<B>LINH VUC HUONG TOI:</B>
+1.Dieu che tin hieu ki thuat so.
+2.Thu va giai dieu che tin hieu ki thuat so.
+<SPAN STYLE="font-weight: medium">3.</SPAN><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-weight: medium">Test&amp;Measurement.</SPAN></SPAN>
+4.Prototype&amp;demonstration: 
+ mo phong toan bo he thong, giup kiem tra nhanh chong tinh' kha thi cua he thong.
+5.Su dung cho giang day va nghien cuu.
+
+<B>SAN PHAM HUONG TOI:</B>
+<U>Bo cong cu sofware</U>
+-libsig  : thu viet tinh toan toi uu hoa cho vector
+-libcodec: mpeg2ts cho DVB, ... .
+-libplay : click and play
+-soft encoder,decoder: the fastest viterbi,reedsolomon,ldpc implementation on PC
+<U>Bo cong cu Hardware:</U>
+-IQ modulator, demodulator
+-RF synthetizer
+<I>=&gt;Tat ca cac san pham duoc xay dung tren nen tang hai bo cong cu tren:</I>
+<U>Modulator(1,4,5)&amp;Demodulator(2,4,5)</U>
+-real-time soft DVB-T,CMMB,ATSC <B>modulator</B> and demodulator.
+-real-time soft DRM,DAB <B>modulator and demodulator</B>.
+-<B>multi-standard</B> Modulator, Demodulator.
+-RFID,GPS
+<U>Retransmitter, Adapter(1,2):</U>
+-IPTV2DVB/PAL
+-VGA2DVB/PAL
+-DVBS2DVBT/PAL
+-Video server
+-Security System
+-Info System
+<U>Test&amp;Measurement(3)</U>
+-PC based Signal Generator &amp; Oscilloscope
+-PC based Channel Simulator
+-RF analyzer
+
+<B>DOI TUONG HUONG TOI:</B>
+<U>a,cac dai phat thanh va truyen hinh (1,3,4)</U>
+-broadcast pham vi rong, can license: dung trong cac dai phat thanh,truyen hinh.
+-muc dich: mo rong vung phu song, dua truyen hinh ktso den voi vung sau vung xa, voi gia thanh hop ly.
+<U>b,cac nha san xuat thiet bi phat thanh truyen hinh (1,3,4)</U>
+<U>c,public (1,2): with price from 200$ to 2000$</U>
+<I><SPAN STYLE="background: #ffff00">Ho gia dinh co trang bi san PC(may phat ~200$)</SPAN></I>
++ket noi PC voi man hinh TV(co do phan giai cao nhu HDTV):  tan dung dau doc DVD(hoac DVD-bluray) cua PC, tan dung hardisk cua PC de  luu tru phim, 1PC co the truyen tin hieu den   nhieu man hinh TV cung luc (ko can lap them card graphique).
++giai tri tren PC: Nghe dai, xem truyen hinh, ..., cac ung dung loai nay chua kha thi vi gia thanh cao(&gt;50$).
+<I><SPAN STYLE="background: #ffff00">Khu tap the (tron goi PC+may phat ~2000$)</SPAN></I>
++Dac diem: broadcast pham vi hep, co the dung cable de ko gay nhieu. Voi muc dich cung cap cac kenh giai tri toi nhieu khach hang song' trong 1 pham vi hep. 
++ung dung nay co the duoc trien khai trong cac toa nha cao tang, cac khu dan cu,khach san. Antenne tren noc' nha duoc ket noi thang toi bo tron tin' hieu. PC dieu che' tin hieu phat ktso(vidu: phat 15 phim), tin hieu nay duoc tron voi tin hieu tu Antenne, sau do duoc khuech dai va truyen toi cac ho gia dinh thong qua duong cable. Moi ho gia dinh duoc trang bi 1 TV co kha nang bat tin hieu ki thuat so. Ngoai cac kenh truyen thong se co them cac kenh giai tri rieng-&gt;added value.
++uu diem: co the dung chung duong truyen voi tin hieu tivi tu antenne dat tren cao, do do' tan dung co so ha tang san co.
+<U>d,</U><U><SPAN STYLE="font-weight: medium">cac nha cung cap dich vu trong san bay, sieu thi, khach san, ... (1), (~2000$)</SPAN></U>
++Dac diem : broadcast pham vi hep, ko can lisence. Voi muc dich chinh la cung cap thong tin thuong xuyen toi khach hang, ket hop voi cac dich vu giai tri khac.
++dung cho cac he thong thong tin trong san bay, trong cac toa nha, khach san, sieu thi. Uu tien dung cable cho cac ung dung loai nay vi ko can toi lisence. 
+<SPAN STYLE="font-weight: medium">+Uu diem: de dang thay doi noi dung phat-&gt;ho tro ban tin noi bo,ctrinh huong dan khach </SPAN>hang,ctrinh quang cao, giai tri; co the truyen duoc nhieu kenh tren cung 1 duong truyen -&gt; moi may thu co the display 1 kenh phu hop voi doi tuong khach hang, ko nhat thiet tat ca cac may deu display cung 1 noi dung; co the dung chung duong truyen voi tin hieu tivi tu antenne dat tren cao-&gt;tan dung co so ha tang san co.
+<U>e,radio amateur(1,3,2)</U>
+
+<B>PARTNER &amp; CONCURENCE:</B>
+-trung tam nghien cu ung dung khoa hoc ky thuat truyen hinh
+<A HREF="http://www.phatthanhtruyenhinh.vn/"><FONT COLOR="#000080"><SPAN LANG="zxx"><U><SPAN STYLE="font-weight: medium">http://www.phatthanhtruyenhinh.vn</SPAN></U></SPAN></FONT></A></PRE>
+<TABLE WIDTH=487 BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=487>
+	<TR>
+		<TD WIDTH=487 VALIGN=TOP BGCOLOR="#ccffff">
+			<P CLASS="western" STYLE="margin-bottom: 0.5cm"><FONT SIZE=4>==&gt;Nghien
+			cuu, san xuat thiet bi phat thanh, truyen hinh</FONT></P>
+			<P CLASS="western" STYLE="margin-bottom: 0.5cm"><A NAME="lw_1242334444_0"></A>
+			<FONT SIZE=4>--SOFTWARE: hoan thien cac thu vien tinh toan va giai
+			thuat<BR>--HARDWARE: based on SIMD processor (PC or DSP)<BR>**on
+			PC or other platform, simpler and cheaper</FONT></P>
+			<P CLASS="western"><FONT SIZE=4>**USB connection + QDUC</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<PRE CLASS="western"><SPAN STYLE="background: #ffff00">18/02/2010 </SPAN>first product overview
+HardWare = USB chip + QDUC, with following applications
+<B>1.Home Entertainment:</B>
+(1PC) |=e-sora=&gt; (TV)
+product support:
+-FM transmission (wireless, coverage range&lt;9m)
+ content:MP3+Internet radio
+-PAL/SECAM modulation: dont need a decoder
+ content: video+photo
+-DVBT modulation: need a decoder, enable HDTV
+ content: video+photo
+
+<B>2.Security System:</B>
+(4 wireless cameras) |=wifi=&gt; (1PC) |=s-sora=&gt; (multiple TVs)
+product support:
+-single or multiple channel: support up to 4 cameras
+
+<B>3.SMATV:</B>
+-DVBT modulation
+-multiple channels (upto 5)
+
+<B>4.Info System:</B>
+-single channel:
+  use PAL/SECAM mudulation, without added material
+-multiple channels:
+  use  DVBT modulation, need one DTT decoder for each TV
+
+<B>5.webTV, lanTV, webRadio</B>
+
+<B>6.Video server; VOD</B>
+
+
+<B><SPAN STYLE="background: #ffff00">20/03/2010</SPAN></B>
+<FONT COLOR="#0000ff"><B>A.Company's Name:</B></FONT> <B>dicotec, sodera, quickom, soracomm</B>
+
+<FONT COLOR="#0000ff"><B>B.Structure of the company:</B></FONT>
+du kien hoat dong tren mo hinh cong ty co phan
+
+<B>I. R&amp;D Department -&gt; Mr Tai director ??</B>
+-thiet ke va phat trien he thong software&amp;hardware
+
+<B>II. Operation Department -&gt; Mr Nham director</B>
+ <SPAN STYLE="font-weight: medium">nhiem vu chinh: test&amp;production</SPAN>
+-PCB Design:cong tac chat che voi R&amp;D Department trong qtrinh phat trien phan cung
+-dam nhiem khau san xuat+kiem tra+dong goi san pham
+-dam nhiem ho tro ky thuat cho khach hang, phat trien cac cong cu ho tro k/h
+-dam nhiem thiet ke mau ma cho sp
+
+<B>III. Business Department -&gt; Mr Tam ?</B>
+ Sales+Marketing+Strategy
+
+<B>IV. Financial Department</B>
+ <SPAN STYLE="font-weight: medium">Capital development + Financial Management + Accounting</SPAN>
+
+<B>V. HR Department</B>
+
+<FONT COLOR="#0000ff"><B>C.Location</B></FONT><B>: NamDinh&amp;Hanoi</B>
+
+<B>-NamDinh:  </B><SPAN STYLE="font-weight: medium">Operation Department + one part of R&amp;D Department</SPAN>
+<B>-Hanoi  :  </B><SPAN STYLE="font-weight: medium">Business  Department + R&amp;D Department</SPAN></PRE>
+</BODY>
+</HTML>
