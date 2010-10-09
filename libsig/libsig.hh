@@ -13,5 +13,6 @@
 #include "sig_scalar.hh"
 #include "sig_dump.hh"
 #include "sig_dft.hh"
+#include "sig_blas.hh"
 
 #endif

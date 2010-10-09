@@ -1,8 +1,8 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'plot.hh'
 **
-** Created: Sat Dec 26 12:01:20 2009
-**      by: The Qt Meta Object Compiler version 61 (Qt 4.5.2)
+** Created: Sun Sep 19 09:13:28 2010
+**      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -10,8 +10,8 @@
 #include "plot.hh"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'plot.hh' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 61
-#error "This file was generated using the moc from 4.5.2. It"
+#elif Q_MOC_OUTPUT_REVISION != 62
+#error "This file was generated using the moc from 4.6.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,13 +20,15 @@ QT_BEGIN_MOC_NAMESPACE
 static const uint qt_meta_data_SdrPlot[] = {
 
  // content:
-       2,       // revision
+       4,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   12, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
+       0,       // flags
+       1,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
        9,    8,    8,    8, 0x05,
@@ -50,9 +52,13 @@ const QMetaObject SdrPlot::staticMetaObject = {
       qt_meta_data_SdrPlot, 0 }
 };
 
+#ifdef Q_NO_DATA_RELOCATION
+const QMetaObject &SdrPlot::getStaticMetaObject() { return staticMetaObject; }
+#endif //Q_NO_DATA_RELOCATION
+
 const QMetaObject *SdrPlot::metaObject() const
 {
-    return &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
 void *SdrPlot::qt_metacast(const char *_clname)
@@ -90,13 +96,15 @@ void SdrPlot::sig_showRunning(bool _t1)
 static const uint qt_meta_data_PlotConfig[] = {
 
  // content:
-       2,       // revision
+       4,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   12, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
+       0,       // flags
+       1,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x05,
@@ -118,9 +126,13 @@ const QMetaObject PlotConfig::staticMetaObject = {
       qt_meta_data_PlotConfig, 0 }
 };
 
+#ifdef Q_NO_DATA_RELOCATION
+const QMetaObject &PlotConfig::getStaticMetaObject() { return staticMetaObject; }
+#endif //Q_NO_DATA_RELOCATION
+
 const QMetaObject *PlotConfig::metaObject() const
 {
-    return &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
 void *PlotConfig::qt_metacast(const char *_clname)
@@ -156,13 +168,15 @@ void PlotConfig::setup()
 static const uint qt_meta_data_SdrMainWin[] = {
 
  // content:
-       2,       // revision
+       4,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   12, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x0a,
@@ -187,9 +201,13 @@ const QMetaObject SdrMainWin::staticMetaObject = {
       qt_meta_data_SdrMainWin, 0 }
 };
 
+#ifdef Q_NO_DATA_RELOCATION
+const QMetaObject &SdrMainWin::getStaticMetaObject() { return staticMetaObject; }
+#endif //Q_NO_DATA_RELOCATION
+
 const QMetaObject *SdrMainWin::metaObject() const
 {
-    return &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
 void *SdrMainWin::qt_metacast(const char *_clname)
@@ -222,13 +240,15 @@ int SdrMainWin::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 static const uint qt_meta_data_SdrGui[] = {
 
  // content:
-       2,       // revision
+       4,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   12, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
       17,    8,    7,    7, 0x0a,
@@ -250,9 +270,13 @@ const QMetaObject SdrGui::staticMetaObject = {
       qt_meta_data_SdrGui, 0 }
 };
 
+#ifdef Q_NO_DATA_RELOCATION
+const QMetaObject &SdrGui::getStaticMetaObject() { return staticMetaObject; }
+#endif //Q_NO_DATA_RELOCATION
+
 const QMetaObject *SdrGui::metaObject() const
 {
-    return &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
 void *SdrGui::qt_metacast(const char *_clname)
@@ -282,13 +306,15 @@ int SdrGui::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 static const uint qt_meta_data_SdrThread[] = {
 
  // content:
-       2,       // revision
+       4,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   12, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
+       0,       // flags
+       3,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
       30,   11,   10,   10, 0x05,
@@ -311,9 +337,13 @@ const QMetaObject SdrThread::staticMetaObject = {
       qt_meta_data_SdrThread, 0 }
 };
 
+#ifdef Q_NO_DATA_RELOCATION
+const QMetaObject &SdrThread::getStaticMetaObject() { return staticMetaObject; }
+#endif //Q_NO_DATA_RELOCATION
+
 const QMetaObject *SdrThread::metaObject() const
 {
-    return &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
 void *SdrThread::qt_metacast(const char *_clname)
@@ -364,13 +394,15 @@ void SdrThread::sig_setpen(int _t1, const QString & _t2, const QString & _t3, co
 static const uint qt_meta_data_SdrMarker[] = {
 
  // content:
-       2,       // revision
+       4,       // revision
        0,       // classname
        0,    0, // classinfo
        0,    0, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
 
        0        // eod
 };
@@ -384,9 +416,13 @@ const QMetaObject SdrMarker::staticMetaObject = {
       qt_meta_data_SdrMarker, 0 }
 };
 
+#ifdef Q_NO_DATA_RELOCATION
+const QMetaObject &SdrMarker::getStaticMetaObject() { return staticMetaObject; }
+#endif //Q_NO_DATA_RELOCATION
+
 const QMetaObject *SdrMarker::metaObject() const
 {
-    return &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
 void *SdrMarker::qt_metacast(const char *_clname)

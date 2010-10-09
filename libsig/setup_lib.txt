@@ -9,6 +9,7 @@ FILELIST:
 	  sig_gui
 	  sig_random  
 	  sig_dft
+	  sig_blas
 	  memalloc
 
 

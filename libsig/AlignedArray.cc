@@ -124,7 +124,7 @@ void AATV::Malloc(int num) {
 
 
 template <typename TX,typename VY>
-void AATV::SetSize(int num) {
+void AATV::setsize(int num) {
    // Set the number of objects that are considered used and valid.
    // UsefulDataSize is initially zero. It is increased by Push or SetSize
    // Setting num > UsefulDataSize is equivalent to pushing (num - UsefulDataSize)
@@ -147,8 +147,7 @@ void AATV::SetSize(int num) {
    // Set new DataSize
    UsefulDataSize = num;
 }
-
-   
+  
 // Produce fatal error message. Used internally and by StringElement.
 // Note: If your program has a graphical user interface (GUI) then you
 // must rewrite this function to produce a message box with the error message.
