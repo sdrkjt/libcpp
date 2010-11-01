@@ -5,8 +5,8 @@
 #include "sig_types.hh"
 
 
-float   sdot_cpp(int n, float  *x,float  *y); 
-float   sdot_sse(int   nv, float  *xv, float  *yv);
+float   sdot_cpp(const Sigfl &x, const Sigfl &y); 
+float   sdot_sse(const Sigfl &xv, const Sigfl &yv);
 
 
 

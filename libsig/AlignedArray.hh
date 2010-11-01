@@ -238,6 +238,8 @@ public:
    void wgn(int num);
    //-------------------------------------------------------------------------------------------------------//
 
+  TX   * getptr() const{ return bufferA; };
+
 
 private:
   buffer<TX>* buf;

@@ -2,27 +2,56 @@
 #include <emmintrin.h>
 #include <math.h>
 
-float   sdot_cpp(int n, float  *x,float  *y) { float  s=0.0;    while (n--)     { s+=*(x++) * *(y++); }; return s; }
-
-#define  motif_sdot(ii,tmp,accu) tmp =   _mm_mul_ps( *((__m128*)(xv+ii)), *((__m128*)(yv+ii)) ) ; \
-    accu =  _mm_add_ps(tmp, accu);					\
-
-float  sdot_sse(int   nv, float  *xv, float  *yv)
+float   sdot_cpp(const Sigfl &x,const Sigfl &y)
 { 
-  __m128 tmp1,tmp2,tmp3,tmp4;
+  float *adrx = x.getptr();
+  float *adry = y.getptr(); 
+  int       n = x.GetSize();
+
+  float  s=0.0;    
+  while (n--)     { s+=*(adrx++) * *(adry++); };
+  return s;
+}
+
+#define  motif_sdot(ii,tmp,accu) tmp =   _mm_mul_ps( *((__m128*)(adrx+ii)), *((__m128*)(adry+ii)) ) ; \
+    accu =  _mm_add_ps(tmp, accu);					\
+    
+float  sdot_sse(const Sigfl &xv, const Sigfl  &yv)
+{ 
+  int nv = xv.GetSize();
+  int nbRemain16 = nv&15       ; int nb16 = nv         - nbRemain16 ;			
+  int nbRemain4  = nbRemain16&3; int nb4  = nbRemain16 - nbRemain4  ;  
+
+#ifdef BOUNDSCHECKING
+  int size_y = yv.GetSize();			
+  if(size_y!=nv)				
+    {								
+      cout<<c_red<<"Error: Size mismatched"<<c_normal<<endl;	
+      myabort();						
+    };								
+#endif
+
+  float  *adrx = xv.getptr();
+  float  *adry = yv.getptr(); 
+
+  __m128 tmp1,tmp2,tmp3,tmp4,tmp5;
   __m128 accu1,accu2,accu3,accu4;
 
   accu1  = _mm_xor_ps(accu1 ,accu1); 
   accu2  = _mm_xor_ps(accu2 ,accu2);
   accu3  = _mm_xor_ps(accu3 ,accu3);
   accu4  = _mm_xor_ps(accu4 ,accu4);
-
-  for(int ii=0;ii<nv;ii+=16){
+  
+  for(int ii=0;ii<nb16;ii+=16){
     motif_sdot(ii   ,tmp1,accu1);
     motif_sdot(ii+4 ,tmp2,accu2);
     motif_sdot(ii+8 ,tmp3,accu3);
     motif_sdot(ii+12,tmp4,accu4);
   }
+  for(int jj=nb16;jj<nb16+nb4;jj+=4){
+    motif_sdot(jj   ,tmp5,accu1);
+  }
+
   __m128 accu;
   accu2 = _mm_add_ps(accu2,accu1);
   accu4 = _mm_add_ps(accu4,accu3);
@@ -38,5 +67,10 @@ float  sdot_sse(int   nv, float  *xv, float  *yv)
   float res;
   _mm_store_ss(&res,tmp0);
 
+  adrx += nv - nbRemain4;
+  adry += nv - nbRemain4;
+  for(int kk=0;kk<nbRemain4;kk++){
+    res += *(adrx++) * *(adry++);
+  }
   return res;
 }
