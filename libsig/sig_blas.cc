@@ -41,7 +41,9 @@ float  sdot_sse(const Sigfl &xv, const Sigfl  &yv)
   accu2  = _mm_xor_ps(accu2 ,accu2);
   accu3  = _mm_xor_ps(accu3 ,accu3);
   accu4  = _mm_xor_ps(accu4 ,accu4);
-  
+  /*unloop x4 is better than x8
+    why?: the raison is that the cache line size is 64bytes = 4 * 4floats
+   */
   for(int ii=0;ii<nb16;ii+=16){
     motif_sdot(ii   ,tmp1,accu1);
     motif_sdot(ii+4 ,tmp2,accu2);

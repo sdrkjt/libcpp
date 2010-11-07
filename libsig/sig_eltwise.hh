@@ -47,10 +47,9 @@
     TX* adrSa = Sa.bufferA;						\
     TX* adrSb = Sb.bufferA;						\
     TX* adrSc = Sc.bufferA;						\
-    int sse_size = AATV::AlignSize;					\
-    bool unaligned = (  (((long int)adrSa)&sse_size)			\
-			||(((long int)adrSb)&sse_size)			\
-			||(((long int)adrSc)&sse_size) );		\
+    bool unaligned = (  (((long int)adrSa)&15)				\
+			||(((long int)adrSb)&15)			\
+			||(((long int)adrSc)&15) );			\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
     int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
@@ -95,9 +94,8 @@ DefBaseOp2(elt_xor,^);
     ELTWISE_BOUNDSCHECKING();						\
     TX* adrSa = Sa.bufferA;						\
     TX* adrSc = Sc.bufferA;						\
-    int sse_size = AATV::AlignSize;					\
-    bool unaligned = (  (((long int)adrSa)&sse_size)			\
-			||(((long int)adrSc)&sse_size) );		\
+    bool unaligned = (  (((long int)adrSa)&15)			\
+			||(((long int)adrSc)&15) );		\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
     int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
@@ -143,9 +141,8 @@ DefBaseFunc1(  normcx         ,    normcx             );   //normalisation compl
     ELTWISE_1_BOUNDSCHECKING();						\
     TX* adrSa = Sa.bufferA;						\
     TX* adrSc = Sc.bufferA;						\
-    int sse_size = AATV::AlignSize;					\
-    bool unaligned = (  (((long int)adrSa)&sse_size)			\
-			||(((long int)adrSc)&sse_size) );		\
+    bool unaligned = (  (((long int)adrSa)&15)				\
+			||(((long int)adrSc)&15) );			\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
     int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
@@ -185,9 +182,8 @@ DefBaseOp1(opposite,-); //operator opposite
     ELTWISE_1_BOUNDSCHECKING();						\
     TX* adrSa = Sa.bufferA;						\
     TX* adrSc = Sc.bufferA;						\
-    int sse_size = AATV::AlignSize;					\
-    bool unaligned = (  (((long int)adrSa)&sse_size)			\
-			||(((long int)adrSc)&sse_size) );		\
+    bool unaligned = (  (((long int)adrSa)&15)				\
+			||(((long int)adrSc)&15) );			\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
     /*Code Not optimal here*/						\

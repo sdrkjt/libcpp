@@ -190,7 +190,10 @@ public:
    }
    // Define desired alignment. Must be a power of 2:
    enum DefineSize {
-      AlignSize = 16              // Desired alignment, must be a power of 2
+     /* Desired alignment, must be a power of 2
+	cache line size is 64, so we use 64 by default
+     */
+      AlignSize = 64
    };
 
    void operator = (AlignedArray const& Sig_src);

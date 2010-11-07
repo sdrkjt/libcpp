@@ -102,7 +102,7 @@ void AATV::Malloc(int num) {
      voir sig_eltwise
     */
    //buffer2U = new char[num*sizeof(TX)+AlignSize-1];// Allocate new buffer
-   buffer2U = memalloc<char>(num*sizeof(TX)+2*(AlignSize-1));
+   buffer2U = memalloc<char>(num*sizeof(TX)+15+(AlignSize-1));
 
    if (buffer2U == 0) {Error(3,num); return;}    // Error can't allocate
    // Align new buffer by AlignSize (must be a power of 2)
