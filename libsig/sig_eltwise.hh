@@ -47,13 +47,13 @@
     TX* adrSa = Sa.bufferA;						\
     TX* adrSb = Sb.bufferA;						\
     TX* adrSc = Sc.bufferA;						\
-    int sse_size_1 = sizeof(VY) - 1;					\
-    bool unaligned = (  (((long int)adrSa)&sse_size_1)			\
-			||(((long int)adrSb)&sse_size_1)		\
-			||(((long int)adrSc)&sse_size_1) );		\
+    int sse_size = AATV::AlignSize;					\
+    bool unaligned = (  (((long int)adrSa)&sse_size)			\
+			||(((long int)adrSb)&sse_size)			\
+			||(((long int)adrSc)&sse_size) );		\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
-    int nb_iter   = size_a/ElementsPerVector;				\
+    int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
     int nb_entier = (unaligned||use_stdc) ? 0 : nb_iter*ElementsPerVector; \
     int ii = 0;								\
     /*if(nb_iter>0)*/							\
@@ -95,12 +95,12 @@ DefBaseOp2(elt_xor,^);
     ELTWISE_BOUNDSCHECKING();						\
     TX* adrSa = Sa.bufferA;						\
     TX* adrSc = Sc.bufferA;						\
-    int sse_size_1 = sizeof(VY) - 1;					\
-    bool unaligned = (  (((long int)adrSa)&sse_size_1)			\
-			||(((long int)adrSc)&sse_size_1) );		\
+    int sse_size = AATV::AlignSize;					\
+    bool unaligned = (  (((long int)adrSa)&sse_size)			\
+			||(((long int)adrSc)&sse_size) );		\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
-    int nb_iter   = size_a/ElementsPerVector;				\
+    int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
     int nb_entier = (unaligned||use_stdc) ? 0: nb_iter*ElementsPerVector; \
     int ii = 0;								\
     /*if(nb_iter>0)*/							\
@@ -143,12 +143,12 @@ DefBaseFunc1(  normcx         ,    normcx             );   //normalisation compl
     ELTWISE_1_BOUNDSCHECKING();						\
     TX* adrSa = Sa.bufferA;						\
     TX* adrSc = Sc.bufferA;						\
-    int sse_size_1 = sizeof(VY) - 1;					\
-    bool unaligned = (  (((long int)adrSa)&sse_size_1)			\
-			||(((long int)adrSc)&sse_size_1) );		\
+    int sse_size = AATV::AlignSize;					\
+    bool unaligned = (  (((long int)adrSa)&sse_size)			\
+			||(((long int)adrSc)&sse_size) );		\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
-    int nb_iter   = size_a/ElementsPerVector;				\
+    int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
     int nb_entier = (unaligned||use_stdc) ? 0: nb_iter*ElementsPerVector; \
     int ii = 0;								\
     /*if(nb_iter>0)*/							\
@@ -185,16 +185,16 @@ DefBaseOp1(opposite,-); //operator opposite
     ELTWISE_1_BOUNDSCHECKING();						\
     TX* adrSa = Sa.bufferA;						\
     TX* adrSc = Sc.bufferA;						\
-    int sse_size_1 = sizeof(VY) - 1;					\
-    bool unaligned = (  (((long int)adrSa)&sse_size_1)			\
-			||(((long int)adrSc)&sse_size_1) );		\
+    int sse_size = AATV::AlignSize;					\
+    bool unaligned = (  (((long int)adrSa)&sse_size)			\
+			||(((long int)adrSc)&sse_size) );		\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
     /*Code Not optimal here*/						\
     AATV VScalar; VScalar.SetSize(ElementsPerVector);			\
     for(int ii=0;ii<ElementsPerVector;ii++)VScalar[ii] = Scalar;	\
     /*---------------------*/						\
-    int nb_iter   = size_a/ElementsPerVector;				\
+    int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
     int nb_entier = (unaligned||use_stdc) ? 0 : nb_iter*ElementsPerVector; \
     int ii = 0;								\
     /*if(nb_iter>0)*/							\

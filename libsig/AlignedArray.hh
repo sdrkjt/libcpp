@@ -190,7 +190,7 @@ public:
    }
    // Define desired alignment. Must be a power of 2:
    enum DefineSize {
-      AlignBy = 16              // Desired alignment, must be a power of 2
+      AlignSize = 16              // Desired alignment, must be a power of 2
    };
 
    void operator = (AlignedArray const& Sig_src);

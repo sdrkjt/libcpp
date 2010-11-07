@@ -98,14 +98,17 @@ void AATV::Malloc(int num) {
 
    // Note: On big-endian platforms buffer2A.i must have the same size as a pointer,
    // on little-endian platforms it doesn't matter.
-   //buffer2U = new char[num*sizeof(TX)+AlignBy-1];// Allocate new buffer
-   buffer2U = memalloc<char>(num*sizeof(TX)+AlignBy-1);
+   /*aligner les 2 extremités du buffer pour faciliter les calculs SIMD
+     voir sig_eltwise
+    */
+   //buffer2U = new char[num*sizeof(TX)+AlignSize-1];// Allocate new buffer
+   buffer2U = memalloc<char>(num*sizeof(TX)+2*(AlignSize-1));
 
    if (buffer2U == 0) {Error(3,num); return;}    // Error can't allocate
-   // Align new buffer by AlignBy (must be a power of 2)
-   buffer2A.b = buffer2U + AlignBy - 1;
+   // Align new buffer by AlignSize (must be a power of 2)
+   buffer2A.b = buffer2U + AlignSize - 1;
    
-   buffer2A.i &= - (long int)AlignBy;
+   buffer2A.i &= - (long int)AlignSize;
  
    if (buf->bufferA) {
       // A smaller buffer is previously allocated
