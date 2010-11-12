@@ -76,3 +76,20 @@ float  sdot_sse(const Sigfl &xv, const Sigfl  &yv)
   }
   return res;
 }
+
+float meanAbs2(const Sigfl  &x){
+  int sz = x.GetSize();
+  return sdot_sse(x,x)/sz;
+};
+
+float meanAbs2(const Sigcxs &x){
+  int sz = x.GetSize();
+  Sigfl x2fl = Sigfl(x);
+  return sdot_sse(x2fl,x2fl)/sz;
+};
+
+// float meanAbs2(const Sigcxd &x){
+//   int sz = x.GetSize();
+//   Sigdb x2db = Sigdb(x);
+//   return sdot_sse(x2db,x2db)/sz;
+// };

@@ -10,8 +10,8 @@ float   sdot_sse(const Sigfl &xv, const Sigfl &yv);
 
 
 
-
-
-
+float meanAbs2(const Sigfl  &x);
+float meanAbs2(const Sigcxs &x);
+//float meanAbs2(const Sigcxd &x);
 
 #endif
