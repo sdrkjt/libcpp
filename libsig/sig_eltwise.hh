@@ -52,7 +52,7 @@
 			||(((long int)adrSc)&15) );			\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
-    int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
+    int nb_iter   = size_a/ElementsPerVector;				\
     int nb_entier = (unaligned||use_stdc) ? 0 : nb_iter*ElementsPerVector; \
     int ii = 0;								\
     /*if(nb_iter>0)*/							\
@@ -94,11 +94,11 @@ DefBaseOp2(elt_xor,^);
     ELTWISE_BOUNDSCHECKING();						\
     TX* adrSa = Sa.bufferA;						\
     TX* adrSc = Sc.bufferA;						\
-    bool unaligned = (  (((long int)adrSa)&15)			\
-			||(((long int)adrSc)&15) );		\
+    bool unaligned = (  (((long int)adrSa)&15)				\
+			||(((long int)adrSc)&15) );			\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
-    int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
+    int nb_iter   = size_a/ElementsPerVector;				\
     int nb_entier = (unaligned||use_stdc) ? 0: nb_iter*ElementsPerVector; \
     int ii = 0;								\
     /*if(nb_iter>0)*/							\
@@ -145,7 +145,7 @@ DefBaseFunc1(  normcx         ,    normcx             );   //normalisation compl
 			||(((long int)adrSc)&15) );			\
     WarningUnaligned(unaligned);					\
     const int ElementsPerVector = sizeof(VY) / sizeof(TX);		\
-    int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
+    int nb_iter   = size_a/ElementsPerVector;				\
     int nb_entier = (unaligned||use_stdc) ? 0: nb_iter*ElementsPerVector; \
     int ii = 0;								\
     /*if(nb_iter>0)*/							\
@@ -190,7 +190,7 @@ DefBaseOp1(opposite,-); //operator opposite
     AATV VScalar; VScalar.SetSize(ElementsPerVector);			\
     for(int ii=0;ii<ElementsPerVector;ii++)VScalar[ii] = Scalar;	\
     /*---------------------*/						\
-    int nb_iter   = (size_a+ElementsPerVector-1)/ElementsPerVector;	\
+    int nb_iter   = size_a/ElementsPerVector;				\
     int nb_entier = (unaligned||use_stdc) ? 0 : nb_iter*ElementsPerVector; \
     int ii = 0;								\
     /*if(nb_iter>0)*/							\

@@ -6,7 +6,7 @@ float   sdot_cpp(const Sigfl &x,const Sigfl &y)
 { 
   float *adrx = x.getptr();
   float *adry = y.getptr(); 
-  int       n = x.GetSize();
+  int       n = x.size();
 
   float  s=0.0;    
   while (n--)     { s+=*(adrx++) * *(adry++); };
@@ -18,12 +18,12 @@ float   sdot_cpp(const Sigfl &x,const Sigfl &y)
     
 float  sdot_sse(const Sigfl &xv, const Sigfl  &yv)
 { 
-  int nv = xv.GetSize();
+  int nv = xv.size();
   int nbRemain16 = nv&15       ; int nb16 = nv         - nbRemain16 ;			
   int nbRemain4  = nbRemain16&3; int nb4  = nbRemain16 - nbRemain4  ;  
 
 #ifdef BOUNDSCHECKING
-  int size_y = yv.GetSize();			
+  int size_y = yv.size();			
   if(size_y!=nv)				
     {								
       cout<<c_red<<"Error: Size mismatched"<<c_normal<<endl;	
@@ -78,18 +78,19 @@ float  sdot_sse(const Sigfl &xv, const Sigfl  &yv)
 }
 
 float meanAbs2(const Sigfl  &x){
-  int sz = x.GetSize();
+  int sz = x.size();
   return sdot_sse(x,x)/sz;
 };
 
 float meanAbs2(const Sigcxs &x){
-  int sz = x.GetSize();
+  int sz = x.size();
   Sigfl x2fl = Sigfl(x);
   return sdot_sse(x2fl,x2fl)/sz;
 };
 
 // float meanAbs2(const Sigcxd &x){
-//   int sz = x.GetSize();
+//   int sz = x.size();
 //   Sigdb x2db = Sigdb(x);
 //   return sdot_sse(x2db,x2db)/sz;
 // };
+
