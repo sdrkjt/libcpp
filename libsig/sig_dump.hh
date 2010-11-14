@@ -20,7 +20,7 @@
 	myabort();						\
       };							\
     for(int ii=0;ii<sizeOut;ii++)				\
-      Sout[ii] = (Sin[ii]). methId ();			\
+      Sout[ii] = (Sin[ii]). methId ();				\
   }								\
   static inline OPConv<Tin,Tout> funId (const Tin & Sin)	\
   {								\
@@ -29,9 +29,9 @@
   }								\
  
 
-DefOpConv(real,realExec,Re,Sigcxs,Sigfl);// x = real(y);
-DefOpConv(imag,imagExec,Im,Sigcxs,Sigfl);// x = imag(y) 
-DefOpConv(real,realExec,Re,Sigcxd,Sigdb);
-DefOpConv(imag,imagExec,Im,Sigcxd,Sigdb);
+// DefOpConv(real,realExec,Re,Sigcxs,Sigfl);// x = real(y);
+// DefOpConv(imag,imagExec,Im,Sigcxs,Sigfl);// x = imag(y) 
+// DefOpConv(real,realExec,Re,Sigcxd,Sigdb);
+// DefOpConv(imag,imagExec,Im,Sigcxd,Sigdb);
 
 #endif

@@ -14,5 +14,6 @@
 #include "sig_dump.hh"
 #include "sig_dft.hh"
 #include "sig_blas.hh"
+#include "sig_func.hh"
 
 #endif
