@@ -8,11 +8,11 @@ int AATV::counter = 0;
 template <typename TX,typename VY>
 AATV::AlignedArray() { 
    // Constructor
-  bufferA = 0; buf = new buffer<TX>();
+  bufferA = 0; buf = NULL;
   UsefulDataSize = 0;
 #ifdef SigName
   name = "S"+num2str(counter);
-  buf->name = name;  // Buffername is the name of original signal
+  //buf->name = name;  // Buffername is the name of original signal
 #endif
   //  cerr<<"new sig: "<<name<<endl;
   counter++;
@@ -33,6 +33,7 @@ AATV::~AlignedArray() {
 }
 template <typename TX,typename VY>
 void AATV::DeleteBuffer() {
+  if(buf==NULL)return;
   // Destructor
   int*  nbref = &(buf->nbref);
   (*nbref)--;
@@ -80,13 +81,14 @@ void AATV::Malloc(int num) {
       if (num <= 0) {
          if (num < 0) Error(1, num);
          // num = 0. Discard data and de-allocate buffer
-	 delete buf;
+	 DeleteBuffer();//delete buf;
 	 UsefulDataSize = 0;
          return;
       }
       // Request to reduce size. Ignore
       return;
    }
+
    // num > BufSize. Allocate new buffer
    char * buffer2U = 0;                          // New buffer, unaligned
    // Aligned pointer to new buffer:
@@ -139,6 +141,8 @@ void AATV::setsize(int num) {
    // with index >= num are erased.
    // Setting num = 0 will erase all objects, but not de-allocate the buffer.
   
+   if(buf==NULL)buf = new buffer<TX>();
+
    if (num < 0) { // Cannot be negative
       Error(1, num); return;
    }
