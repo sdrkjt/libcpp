@@ -236,7 +236,7 @@ public:
    void SetSize(int num){setsize(num);};
    void setsize(int num);
    void ones (int num){ this->SetSize(num);  *this = 1;/*do not use memset here*/}
-   void zeros(int num){ this->SetSize(num);  memset(bufferA, 0, num);/**this = 0;*/}
+   void zeros(int num){ this->SetSize(num);  memset(bufferA, 0, num*sizeof(TX));/**this = 0;*/}
    void random(int num){ randomInit(*this,num);/*defined in sig_random.hh*/ };
    void wgn(int num);
    //-------------------------------------------------------------------------------------------------------//

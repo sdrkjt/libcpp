@@ -119,7 +119,7 @@ void AATV::Malloc(int num) {
       // A smaller buffer is previously allocated
       memcpy(buffer2A.p, buf->bufferA, UsefulDataSize*sizeof(TX));// Copy contents of old buffer into new one
       //delete[] (buf->bufferU);                          // De-allocate old buffer
-      memfree(buf->bufferU); myabort();
+      memfree(buf->bufferU); //myabort();
    }
    buf->bufferU = buffer2U;                           // Save pointer to buffer
    buf->bufferA = buffer2A.p;                         // Save aligned pointer to new buffer

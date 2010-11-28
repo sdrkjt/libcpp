@@ -20,20 +20,23 @@ static inline void randomInit(Sigui8 &sout, const int &size){
 
 static inline void randomInit(Sigfl &sout, const int &size){
   sout.SetSize(size);
+  float fact = 1.0/RAND_MAX;
   for(int ii=0;ii<size;ii++)
-    sout[ii] = random();
+    sout[ii] = random()*fact;
 };
 
 static inline  void randomInit(Sigcxs &sout, const int &size){
   sout.SetSize(size);
+  float fact = 1.0/RAND_MAX;
   for(int ii=0;ii<size;ii++)
-    sout[ii] = Cxs(random(),random());
+    sout[ii] = Cxs(random()*fact,random()*fact);
 
 };
 static inline  void randomInit(Sigcxd &sout, const int &size){
   sout.SetSize(size);
+  double fact = 1.0/RAND_MAX;
   for(int ii=0;ii<size;ii++)
-    sout[ii] = Cxd(random(),random());
+    sout[ii] = Cxd(random()*fact,random()*fact);
 };
 
 

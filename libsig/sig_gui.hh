@@ -124,6 +124,25 @@ void plot1d(const SX &input, const QString& title = "notitle")
   plot(pl_input,title);
 };
 
+template <typename TX, typename VY>
+void plot1d(const OP<TX,VY> & inputOP, const QString& title = "notitle")
+{
+  AlignedArray<TX,VY> tmp;
+  inputOP.exec(tmp);
+
+  SdrSigRe< AlignedArray<TX,VY> > pl_input (tmp);
+  plot(pl_input,title);
+};
+
+template <typename TX, typename TY>
+void plot1d(const OPConv<TX,TY> & inputOP, const QString& title = "notitle")
+{
+  TY tmp;
+  inputOP.exec(tmp);
+
+  SdrSigRe< TY > pl_input (tmp);
+  plot(pl_input,title);
+};
 
 void plot2d(const Sigcxs& input, const QString& title = "notitle");
 void plot2d(fftwf_complex* input, const int& Size, const QString& title = "notitle");
