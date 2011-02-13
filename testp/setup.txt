@@ -2,7 +2,7 @@ INCLUDED DIRECTORIES: ../libsig/
 
 INCLUDED SETUPS: ../libsig/setup_lib.txt 
 
-FILELIST: class_example func_blas_asm func_add_asm 
+FILELIST: class_example  func_add_asm #func_blas_asm
 
 EXECUTABLE FILES:t_libsig 
 	   	 t_fftw
@@ -17,14 +17,14 @@ EXECUTABLE FILES:t_libsig
 		 #t_sigdump
 		 t_memalloc
 C++ GLOBAL OPTIONS: 	 #-msse2
-    	   		 -msse3	
-    	   		 -DSSE3	    
+    	   		 #-msse3	
+    	   		 #-DSSE3	    
     	   	    	 -O3	    
 			 -fno-inline
 			 #-Wall
     	   	         -fno-builtin
  			 #-DASM
-                         -DMEMALLOC
+                         #-DMEMALLOC
 			 -DW_MEMALLOC
 			 -DW_UALIGNED		 
 LINKNAMES: 	-lfftw3f ../asmlib/alibelf32.a -L../libgui/bin -lSDRGUI

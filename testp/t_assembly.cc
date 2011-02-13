@@ -1,16 +1,16 @@
-#define check_asm 0
+#define check_asm 1
 //g++ -S -O3 -msse2 t_assembly.cc
 #if !check_asm
 #include "TSC.hh"
 #else
-#define TIME(x)
-#define DUMP(x)
-#define OVERHEAD()
+// #define TIME(x)
+// #define DUMP(x)
+// #define OVERHEAD()
 #endif
    
 #include <emmintrin.h>
 #include <math.h>
-#include "../libsig/libsig.hh"
+#include "../libsig/libsig_nogui.hh"
 
 #define ALIGNED __attribute__((  aligned(16)  ))
 #if !check_asm
@@ -22,7 +22,7 @@
 #endif
 
 #include "func_add_asm.hh" 
-#include "func_blas_asm.hh"
+//#include "func_blas_asm.hh"
 
 /************************************************************************/
 #define Size 8192
@@ -202,6 +202,13 @@ void test_xor(){
   DUMP(cxc);
 }
 
+void test_saxpy(){
+  float acoef = 0.1f;
+  //saxpy_sse_intrin(Size,acoef,a,c);
+}
+void test_sdot(){
+  // sdot_sse_intrin(Size,a,c);
+}
 //NOTE 21/02/2009://///////////////////////////////////////////////////
 // add_sse_16 nhanh hon add_sse khoang 1000cycles (8192)
 // dung intrinsic cho cung performance nhu asm inline (avec -O3)
@@ -257,7 +264,7 @@ int main(){
   OVERHEAD();
  
   init();
-  test_add_intrin();
+  //test_add_intrin();
   //test_add_asm();
   //test_add_normal();
   //test_elt_sig();
@@ -267,5 +274,7 @@ int main(){
   //test_rsqrt();
   //test_sqrt();
   //test_xor();
+  //test_saxpy();
+  test_sdot();
   return 1;
 }

@@ -8,10 +8,9 @@ OBJECTPATH = /home/sdr/WORKING/testp/z_lib/z_obj/homesdrWORKINGtestpsetup.txt/$(
 LIBRARYPATH = /home/sdr/WORKING/testp/z_lib/$(ARCH)$(MACH)$(DYN)_$(LIBC)/
 
 FLAGS = -Wswitch-default -ggdb -DDEBUG
-INCLUDES = -msse3 -DSSE3 -O3 -fno-inline -fno-builtin -DMEMALLOC -DW_MEMALLOC -DW_UALIGNED -O3 -I$(SOURCEPATH) $(BLOCK0_I) $(USER0_I) $(USER1_I) $(USER2_I) $(USER3_I) $(USER4_I) $(USER5_I) $(USER6_I)
+INCLUDES = -O3 -fno-inline -fno-builtin -DW_MEMALLOC -DW_UALIGNED -O3 -I$(SOURCEPATH) $(BLOCK0_I) $(USER0_I) $(USER1_I) $(USER2_I) $(USER3_I) $(USER4_I) $(USER5_I) $(USER6_I)
 LINKS =  -L$(BLOCK0_L) -Wl,--start-group -lm -lpthread -lhomesdrWORKINGlibsigsetup_lib.txt -lfftw3f ../asmlib/alibelf32.a -L../libgui/bin -lSDRGUI -lQtGui -lQtCore -lpthread -lqwt -Wl,--end-group
 
-MACH = -msse3
 CXX = ccache g++ $(MACH) $(PARAM)
 THIS_LIB = $(LIBRARYPATH)libhomesdrWORKINGtestpsetup.txt.a
 
@@ -29,11 +28,11 @@ BLOCK0_L = /home/sdr/WORKING/libsig/z_lib/$(ARCH)$(MACH)$(DYN)_$(LIBC)
 DEP_LIBS = /home/sdr/WORKING/libsig/z_lib/$(ARCH)$(MACH)$(DYN)_$(LIBC)/libhomesdrWORKINGlibsigsetup_lib.txt.a \
 
 OBJECT = $(OBJECTPATH)class_example.o \
-         $(OBJECTPATH)func_blas_asm.o \
          $(OBJECTPATH)func_add_asm.o \
+	float_dotprod_sse64.o\
+	fcomplex_dotprod_sse64.o\
 
 SOURCE = $(SOURCEPATH)class_example.cc \
-         $(SOURCEPATH)func_blas_asm.cc \
          $(SOURCEPATH)func_add_asm.cc \
 
 PROG0   = t_libsig

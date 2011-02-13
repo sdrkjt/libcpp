@@ -283,7 +283,7 @@ void saxpy_sse(int np,const float& ap, float* xp, float* yp){
 		    : "xmm0","xmm1","xmm2","xmm3","xmm4","xmm5","xmm6","xmm7","edi","memory","cc" 
 			);
 }
-#define  motif(ii,tmp1) __m128 tmp1 =  tmpA * *((__m128*)(xp+ii)) ;	\
+#define  motif_saxpy(ii,tmp1) __m128 tmp1 =  tmpA * *((__m128*)(xp+ii)) ; \
     *((__m128*)(yp+ii)) =  _mm_add_ps(tmp1, *((__m128*)(yp+ii))); \
 
 
@@ -291,13 +291,66 @@ void saxpy_sse_intrin(int np,const float& ap, float* xp, float* yp){
   __m128 tmpA; tmpA =  _mm_set1_ps(ap);
   
   for(int ii=0;ii<np;ii+=32){
-    motif(ii,tmp1);
-    motif(ii+4,tmp2);
-    motif(ii+8,tmp3);
-    motif(ii+12,tmp4);
-    motif(ii+16,tmp5);
-    motif(ii+20,tmp6);
-    motif(ii+24,tmp7);
-    motif(ii+28,tmp8);
+    motif_saxpy(ii,tmp1);
+    motif_saxpy(ii+4,tmp2);
+    motif_saxpy(ii+8,tmp3);
+    motif_saxpy(ii+12,tmp4);
+    motif_saxpy(ii+16,tmp5);
+    motif_saxpy(ii+20,tmp6);
+    motif_saxpy(ii+24,tmp7);
+    motif_saxpy(ii+28,tmp8);
   }
+}
+#define  motif_sdot(ii,tmp1,tmp1A) tmp1 =   _mm_mul_ps( *((__m128*)(xv+ii)), *((__m128*)(yv+ii)) ) ; \
+    tmp1A =  _mm_add_ps(tmp1, tmp1A);					\
+
+float  sdot_sse_intrin(int   nv, float  *xv, float  *yv)
+{ 
+  __m128 tmp1A,tmp2A,tmp3A,tmp4A,tmp5A,tmp6A,tmp7A,tmp8A;
+  __m128 tmp1,tmp2,tmp3,tmp4,tmp5,tmp6,tmp7,tmp8;
+
+  tmp1A = _mm_xor_ps(tmp1A,tmp1A); 
+  tmp2A = _mm_xor_ps(tmp2A,tmp2A);
+  tmp3A = _mm_xor_ps(tmp3A,tmp3A);
+  tmp4A = _mm_xor_ps(tmp4A,tmp4A);
+  //tmp5A = _mm_xor_ps(tmp5A,tmp5A);
+  //tmp6A = _mm_xor_ps(tmp6A,tmp6A);
+  //tmp7A = _mm_xor_ps(tmp7A,tmp7A);
+  //tmp8A = _mm_xor_ps(tmp8A,tmp8A);
+
+  for(int ii=0;ii<nv;ii+=16){
+    motif_sdot(ii   ,tmp1,tmp1A);
+    motif_sdot(ii+4 ,tmp2,tmp2A);
+    motif_sdot(ii+8 ,tmp3,tmp3A);
+    motif_sdot(ii+12,tmp4,tmp4A);
+    //motif_sdot(ii+16,tmp5,tmp5A);
+    //motif_sdot(ii+20,tmp6,tmp6A);
+    //motif_sdot(ii+24,tmp7,tmp7A);
+    //motif_sdot(ii+28,tmp8,tmp8A);
+  }
+  __m128 tmpA;
+  tmpA = _mm_add_ps(tmpA,tmp1A);
+  tmpA = _mm_add_ps(tmpA,tmp2A);
+  tmpA = _mm_add_ps(tmpA,tmp3A);
+  tmpA = _mm_add_ps(tmpA,tmp4A);
+  //tmpA = _mm_add_ps(tmpA,tmp5A);
+  //tmpA = _mm_add_ps(tmpA,tmp6A);
+  //tmpA = _mm_add_ps(tmpA,tmp7A);
+  //tmpA = _mm_add_ps(tmpA,tmp8A);
+
+  __m128 tmpB;  //_mm_xorps(tmpB,tmpB);
+  tmpB = _mm_movehl_ps(tmpB,tmpA);	// tmpB = 0 0 d1 d2
+  tmpB = _mm_add_ps(tmpB,tmpA);         // tmpB = d1 d2 d1+d3 d2+d4
+  __m128 tmpB_shuffle;
+  tmpB_shuffle = _mm_shuffle_ps(tmpB,tmpB,_MM_SHUFFLE(3,2,0,1)); //tmpB_shuffle =   d1 d2 d2+d4 d1+d3
+  tmpB = _mm_add_ss(tmpB,tmpB_shuffle);
+
+  float res;
+  _mm_store_ss(&res,tmpB);
+
+
+  //float* toto = (float*)&tmpA;
+  //return toto[0]+toto[1]+toto[2]+toto[3];
+
+  return res;
 }

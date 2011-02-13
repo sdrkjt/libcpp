@@ -479,21 +479,42 @@ void test_memcpy()
   }
   cout<<sum<<endl;
 }
+void test_blas(){
+ MSGc("Start******TEST BLAS",c_red);
 
+ Sigcxs cxa,cxb,cxc;
+
+ cxa.SetSize(Size);cxb.SetSize(Size);cxc.SetSize(Size);
+ //cxa.SigStep(0,1,Size);
+ for(int kk=0;kk<Size;kk++)
+   {
+     cxa[kk] = Cxs(0.7 ,0.1);
+     cxb[kk] = Cxs(0.27,0.11);
+   }
+ TIME();
+ float mean = meanAbs2(cxa);
+ mean = mean + meanAbs2(cxb);
+ TIME();
+
+
+};
 int main(int argc, char **argv)
 {
   QApplication a(argc, argv);
   SdrGui   pGui;
 
   int (*worker) (int, char **);
-
-  test_clocktest();
+  MSG("TEST SIZE "<<Size);
+  //OVERHEAD();
+  //test_clocktest();
   //test_example();
   //test_complexd();
   
   //test_memcpy();
   //test_complexs();
   
+  test_blas();
+
   if(0){ 
     worker = 
       test_complexs;

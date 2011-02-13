@@ -22,11 +22,11 @@
 #endif
 
 #include "func_add_asm.hh" 
-#include "func_blas_asm.hh"
+//#include "func_blas_asm.hh"
 
 
 /************************************************************************/
-#define Size 2048
+#define Size 8012
 //NOTE
 //Size = 8192: Cache load      45.000cycles
 //Size = 1024:                  2.400cycles
@@ -79,8 +79,22 @@ void init(){
 }
 /************************************************************************/
 
-//float sdot_C(int n, float  *x,float  *y) { float  s=0.0;    while (n--)     { s+=*(x++) * *(y++); }; return s; }
+float sdot_C(int n, float  *x,float  *y) { float  s=0.0;    while (n--)     { s+=*(x++) * *(y++); }; return s; }
 //void  saxpy_C(int n, float   a,float  *x, float  *y) {       while (n--)  *(y++)+=  a    * *(x++); };
+#ifdef __cplusplus
+extern "C" {
+#endif
+float 
+float_dotprod_sse (const float *input,
+		   const float *taps, unsigned n_4_float_blocks);
+void
+fcomplex_dotprod_sse (const float *input,
+                   const float *taps, unsigned n_2_complex_blocks, float *result);
+
+
+#ifdef __cplusplus
+}
+#endif
 #include "benchTime.h"
 void test_time_ms(){
     BenchTime T1;
@@ -122,19 +136,40 @@ void test_time_ms(){
     cout<<"ref:"<<ref<<endl;
     cout<<"res:"<<res<<endl;
     //-------------------------------------------------//
+    Sigfl Sa;Sa.zeros(Size);
+    Sigfl Sb;Sb.zeros(Size);
+    Sigcxs Sc; Sc.setsize(Size);
+
+
+    for(int kk=0;kk<Size;kk++)
+      {
+	Sa[kk] = 0.123f + kk; 
+	Sb[kk] = 0.789f + kk;
+	Sc[kk] = Cxs(0.123f + kk,0.456f + kk);
+      }
 
     T1.reset();
     T2.reset();
-   
+
+    Cxs ref_cx;
+
     T1.start();
     TLOOP(nbIter);
-    ref= sdot_C(Size,a,b);
+    //ref= cpp_dotproduct_fff(Sa,Sb);
+    ref_cx = cpp_dotproduct_ccf(Sc,Sb);
     ENDTLOOP();
     T1.stop();
-    
+
+    Cxs res_cx;
+
     T2.start();
     TLOOP(nbIter);
-    res = sdot_sse(Size,a,b);
+    //res = sse_dotproduct_fff(Sa,Sb);
+    //res = float_dotprod_sse (Sa.getptr(),Sb.getptr(), Size/4);
+
+    res_cx = sse_dotproduct_ccf(Sc,Sb);
+    //fcomplex_dotprod_sse (Sb.getptr(),(float*)Sc.getptr(),Size/2 , (float*)(&res_cx));
+
     ENDTLOOP();
     T2.stop();
 
@@ -149,78 +184,80 @@ void test_time_ms(){
     cout<<"ref:"<<ref<<endl;
     cout<<"res:"<<res<<endl;
 
+    cout<<"ref_cx:"<<ref_cx<<endl;
+    cout<<"res_cx:"<<res_cx<<endl;
     //-------------------------------------------------//
 
 
-    T1.reset();
-    T2.reset();
+    // T1.reset();
+    // T2.reset();
 
-    float acoef = 0.1f;
+    // float acoef = 0.1f;
     
-    for(int kk=0;kk<Size;kk++)c[kk] = 0.789f + kk;
-    T1.start();
-    TLOOP(nbIter);
-    saxpy_C(Size,acoef,a,c);
-    ENDTLOOP();
-    T1.stop();
+    // for(int kk=0;kk<Size;kk++)c[kk] = 0.789f + kk;
+    // T1.start();
+    // TLOOP(nbIter);
+    // saxpy_C(Size,acoef,a,c);
+    // ENDTLOOP();
+    // T1.stop();
     
-    ref= sdot_C(Size,c,c);
+    // ref= sdot_C(Size,c,c);
 
-    for(int kk=0;kk<Size;kk++)c[kk] = 0.789f + kk;
-    T2.start();
-    TLOOP(nbIter);
-    //saxpy_sse(Size,acoef,a,c);
-    saxpy_sse_intrin(Size,acoef,a,c);
-    ENDTLOOP();
-    T2.stop();
+    // for(int kk=0;kk<Size;kk++)c[kk] = 0.789f + kk;
+    // T2.start();
+    // TLOOP(nbIter);
+    // //saxpy_sse(Size,acoef,a,c);
+    // saxpy_sse_intrin(Size,acoef,a,c);
+    // ENDTLOOP();
+    // T2.stop();
 
-    res =  sdot_C(Size,c,c);
+    // res =  sdot_C(Size,c,c);
 
-    cout<<c_blue<<"\nFast SAXPY INTRIN operation: ( c[i] +=acoef[i] * a[i]  for_all_i )\n"<<c_normal;
-    printf(       " dim   = %i\n"
-	          " nIter = %i\n"
-	          " Benchmark Timings (all times in milliseconds):\n"
-	          ,Size,nbIter); 
-    T1.print("  STDC on float     ");
-    T2.print("  SSE2 on float     ");
+    // cout<<c_blue<<"\nFast SAXPY INTRIN operation: ( c[i] +=acoef[i] * a[i]  for_all_i )\n"<<c_normal;
+    // printf(       " dim   = %i\n"
+    // 	          " nIter = %i\n"
+    // 	          " Benchmark Timings (all times in milliseconds):\n"
+    // 	          ,Size,nbIter); 
+    // T1.print("  STDC on float     ");
+    // T2.print("  SSE2 on float     ");
 
-    cout<<"ref:"<<ref<<endl;
-    cout<<"res:"<<res<<endl;
-    //-------------------------------------------------//
+    // cout<<"ref:"<<ref<<endl;
+    // cout<<"res:"<<res<<endl;
+    // //-------------------------------------------------//
 
-    T1.reset();
-    T2.reset();
+    // T1.reset();
+    // T2.reset();
 
 
-    for(int kk=0;kk<Size;kk++)c[kk] = 0.789f + kk;
-    T1.start();
-    TLOOP(nbIter);
-    saxpy_C(Size,acoef,a,c);
-    ENDTLOOP();
-    T1.stop();
+    // for(int kk=0;kk<Size;kk++)c[kk] = 0.789f + kk;
+    // T1.start();
+    // TLOOP(nbIter);
+    // saxpy_C(Size,acoef,a,c);
+    // ENDTLOOP();
+    // T1.stop();
     
-    ref= sdot_C(Size,c,c);
+    // ref= sdot_C(Size,c,c);
 
-    for(int kk=0;kk<Size;kk++)c[kk] = 0.789f + kk;
-    T2.start();
-    TLOOP(nbIter);
-    saxpy_sse(Size,acoef,a,c);
-    ENDTLOOP();
-    T2.stop();
+    // for(int kk=0;kk<Size;kk++)c[kk] = 0.789f + kk;
+    // T2.start();
+    // TLOOP(nbIter);
+    // saxpy_sse(Size,acoef,a,c);
+    // ENDTLOOP();
+    // T2.stop();
 
-    res =  sdot_C(Size,c,c);
+    // res =  sdot_C(Size,c,c);
 
-    cout<<c_blue<<"\nFast SAXPY operation: ( c[i] +=acoef[i] * a[i]  for_all_i )\n"<<c_normal;
-    printf(       " dim   = %i\n"
-	          " nIter = %i\n"
-	          " Benchmark Timings (all times in milliseconds):\n"
-	          ,Size,nbIter); 
-    T1.print("  STDC on float     ");
-    T2.print("  SSE2 on float     ");
+    // cout<<c_blue<<"\nFast SAXPY operation: ( c[i] +=acoef[i] * a[i]  for_all_i )\n"<<c_normal;
+    // printf(       " dim   = %i\n"
+    // 	          " nIter = %i\n"
+    // 	          " Benchmark Timings (all times in milliseconds):\n"
+    // 	          ,Size,nbIter); 
+    // T1.print("  STDC on float     ");
+    // T2.print("  SSE2 on float     ");
 
-    cout<<"ref:"<<ref<<endl;
-    cout<<"res:"<<res<<endl;
-    //-------------------------------------------------//
+    // cout<<"ref:"<<ref<<endl;
+    // cout<<"res:"<<res<<endl;
+    // //-------------------------------------------------//
 
 }
 
