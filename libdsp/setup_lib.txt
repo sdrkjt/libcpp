@@ -1,0 +1,7 @@
+#INCLUDED DIRECTORIES: ../libsig
+INCLUDED SETUPS: ../libsig/setup_lib.txt
+FILELIST: 
+	dsp_fir_design
+	dsp_resampler	
+	dsp_filter		
+#LINKNAMES: 
