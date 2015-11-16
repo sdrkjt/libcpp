@@ -1,5 +1,6 @@
 #include "sdrgui.hh"
-#include "../libsig/cpp_monit.hh"
+#include <iostream>
+#include <unistd.h>
 
 int  algo(int argc, char **argv){
   const int nPoints = 100;
@@ -24,7 +25,7 @@ int  algo(int argc, char **argv){
   plot( SdrDataExample(::sqrt, nPoints));
 
   SdrThread* pcur =  (SdrThread*)QThread::currentThread();
-  cout<<c_red<<"processus"  <<pcur->GetId()<<"******** "<<time<<c_normal<<endl;
+  cout<<"processus"  <<pcur->GetId()<<"******** "<<time<<endl;
   
   sleep(1);
  
@@ -50,7 +51,7 @@ int  algo2(int argc, char **argv){
   plot(*x,"plot in thread 2");
   
   SdrThread* pcur =  (SdrThread*)QThread::currentThread();
-  cout<<c_red<<"processus"  <<pcur->GetId()<<"******** "<<time<<c_normal<<endl;
+  cout<<"processus"  <<pcur->GetId()<<"******** "<<time<<endl;
   
   sleep(1);
   
@@ -68,7 +69,7 @@ int main(int argc, char **argv)
     SdrThread plot1(&pGui1,&algo);
     plot1.start();
     SdrThread plot2(&pGui2,&algo2);
-    //plot2->start();
+    plot2.start();
 
     return a.exec();
 

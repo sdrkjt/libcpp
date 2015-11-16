@@ -3,10 +3,16 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 
+TARGET = test
 DEPENDPATH += .
 INCLUDEPATH += .
 
+QWT_VERSION      =5.1.1
+QWT_DIR = /usr/local/qwt-$$QWT_VERSION 
+
+LIBS += -L$$QWT_DIR/lib -lqwt
+INCLUDEPATH += $$QWT_DIR/include
+
 # Input
-HEADERS += plot.hh sdrgui.hh start.xpm ../libsig/cpp_monit.hh
+HEADERS += plot.hh sdrgui.hh start.xpm 
 SOURCES += main.cc plot.cc sdrgui.cc
