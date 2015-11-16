@@ -7,11 +7,11 @@
 
 //#define BOUNDSCHECKING 0                        // 0 will skip array bounds checking
 
-// #ifdef BOUNDSCHECKING_
-// #define val(i) data(i)             //use checking out of range
-// #else
-// #define val(i) bufferA[i]          //without checking out of range, for speedup
-// #endif
+#ifdef BOUNDSCHECKING_
+#define val(i) data(i)             //use checking out of range
+#else
+#define val(i) bufferA[i]          //without checking out of range, for speedup
+#endif
 
 // #ifndef BOUNDSCHECKING_
 // #define VECT(Sig,type,i) *(type*)(Sig.bufferA + i) //without checking out of range, for speedup
